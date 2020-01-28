@@ -1,3 +1,4 @@
 .DS_Store # I work on a mac...
 *.o
 *.gch
+*.out
