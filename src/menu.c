@@ -36,6 +36,7 @@ void print_main_menu(WINDOW *menu_win, int highlight) {
     if (highlight == i + 1) {
       wattron(menu_win, A_REVERSE);
       mvwprintw(menu_win, y, x, "%s", main_menu[i]);
+      wattroff(menu_win, A_REVERSE);
     } else {
       mvwprintw(menu_win, y, x, "%s", main_menu[i]);
     }
