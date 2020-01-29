@@ -1,5 +1,7 @@
-.DS_Store # I work on a mac...
+.DS_Store
 *.o
 *.gch
 *.out
-*.org # I'm also an avid emacs user...
+*.org
+*.dSYM
+*.plist
