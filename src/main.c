@@ -68,6 +68,9 @@ int main(void){
       else
         ++highlight_main;
       break;
+    case 97:
+      result1 = 999;
+      break;
     case 10:
       result1 = highlight_main;
       break;
@@ -94,6 +97,9 @@ int main(void){
             highlight_comics = 1;
           else
             ++highlight_comics;
+          break;
+        case 97:
+          result2 = 999;
           break;
         case 10:
           result2 = highlight_comics;

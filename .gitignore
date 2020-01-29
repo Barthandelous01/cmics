@@ -2,3 +2,4 @@
 *.o
 *.gch
 *.out
+*.org # I'm also an avid emacs user...
