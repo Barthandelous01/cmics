@@ -2,7 +2,11 @@
 #include "url.h"
 
 int main(void){
-  printf("%d", n_main_choices);
+
+  /*
+   * Initialization for main logic.
+   * Mostly ncurses crap here.
+   */
 
   /* ncurses init */
   initscr();
@@ -10,26 +14,48 @@ int main(void){
   noecho();
   cbreak();
   raw();
+  curs_set(0); /* makes cursor invisible */
 
   /* Calculate size of window */
   int y, x;
   getmaxyx(stdscr, y, x);
 
+  /* Temporary variables */
+  int n_main_choices = 3;
   /* Window variables */
   WINDOW *my_win;
-  int c;
-  int result = 0;
+  WINDOW *comic_win;
+  WINDOW *echo_buffer;
+  /* Choice holding variables */
+  int c1;
+  int c2;
+  /* result holding variables */
+  int result1 = 0;
+  int result2 = 0;
+  /* current selection variables */
   int highlight_main = 1;
-  my_win = newwin(y-1, 30, 0,0);
+  int highlight_comics = 1;
+  /* initializing new windows */
+  my_win = newwin(y-1, 21, 0,0);
+  comic_win = newwin(y-1, 20, 0, 21);
+  echo_buffer = newwin(1, x-1, y, 0);
+  /* initialize keypads for windows */
+  keypad(comic_win, TRUE);
   keypad(my_win, TRUE);
-  refresh(); /* Refresh stdscr */
+  refresh(); /* Refresh stdscr. necessary for showing other windows. */
   print_main_menu(my_win, highlight_main);
+
+  /*
+   * Main GUI logic loop.
+   * someday, this might get multiple selections.
+   */
 
   /* Main event loop */
   while (1) {
-    c = wgetch(my_win);
-    mvwprintw(my_win, y, 0, "%c", c);
-    switch (c) {
+    if (result1 != 0)
+      goto MENU; /* menu acheived, skip this loop */
+    c1 = wgetch(my_win);
+    switch (c1) {
     case KEY_UP:
       if (highlight_main == 1)
         highlight_main = n_main_choices;
@@ -43,23 +69,74 @@ int main(void){
         ++highlight_main;
       break;
     case 10:
-      result = highlight_main;
+      result1 = highlight_main;
       break;
     default:
-      mvprintw(y, 0, "%d", c);
+      mvwprintw(echo_buffer, y, 0, "%d", c1);
+      wrefresh(echo_buffer);
       refresh();
       break;
-    };
+    }
     print_main_menu(my_win, highlight_main);
-    if (result != 0)
-      break;
+  MENU:if (result1 != 0) {
+      print_comic_menu(comic_win, highlight_comics);
+      while(1) {
+        c2 = wgetch(comic_win);
+        switch(c2) {
+        case KEY_UP:
+          if (highlight_comics == 1)
+            highlight_comics = n_comics;
+          else
+            --highlight_comics;
+          break;
+        case KEY_DOWN:
+          if (highlight_comics == n_comics)
+            highlight_comics = 1;
+          else
+            ++highlight_comics;
+          break;
+        case 10:
+          result2 = highlight_comics;
+          break;
+        default:
+          break;
+        }
+        print_comic_menu(comic_win, highlight_comics);
+        if (result2 != 0) {
+          goto LOGIC;
+        }
+      }
+    }
   }
 
+  /*
+   * Goto out of the selection loop
+   * (only way to not kill the loops, unfortunately).
+   * main backend-logic
+   * for downloading, and all that good stuff.
+   */
 
-  /* Press any key to quit */
+  /* main downloading logic goes here */
+ LOGIC:switch (highlight_main) {
+    /* magic goes here */
+  default:
+    break;
+  }
+
+  /*
+   * This is the de-init.
+   * Mostly ncurses crap, too.
+   */
+
+  /* delete windows */
+  delwin(my_win);
+  delwin(comic_win);
+  delwin(echo_buffer);
+
+  /* removes artifacts. Press any key to quit. */
   clrtoeol();
   refresh();
-  endwin();
   getch();
+  endwin();
   return 0;
 }
