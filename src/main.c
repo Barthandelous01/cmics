@@ -26,6 +26,7 @@ int main(void){
   WINDOW *my_win;
   WINDOW *comic_win;
   WINDOW *echo_buffer;
+  WINDOW *load_output;
   /* Choice holding variables */
   int c1;
   int c2;
@@ -38,12 +39,15 @@ int main(void){
   /* initializing new windows */
   my_win = newwin(y-1, 21, 0,0);
   comic_win = newwin(y-1, 20, 0, 21);
-  echo_buffer = newwin(1, x-1, y, 0);
+  echo_buffer = newwin(1, x-1, y-1, 0);
+  load_output = newwin(y-1, x-41, 0, 41);
   /* initialize keypads for windows */
   keypad(comic_win, TRUE);
   keypad(my_win, TRUE);
   refresh(); /* Refresh stdscr. necessary for showing other windows. */
   print_main_menu(my_win, highlight_main);
+  wprintw(echo_buffer, "%s", "Use the <up> and <down> keys to move, or press <a> to select all.");
+  wrefresh(echo_buffer);
 
   /*
    * Main GUI logic loop.
@@ -75,9 +79,6 @@ int main(void){
       result1 = highlight_main;
       break;
     default:
-      mvwprintw(echo_buffer, y, 0, "%d", c1);
-      wrefresh(echo_buffer);
-      refresh();
       break;
     }
     print_main_menu(my_win, highlight_main);
@@ -123,11 +124,19 @@ int main(void){
    */
 
   /* main downloading logic goes here */
- LOGIC:switch (highlight_main) {
+  /* This starts the third window */
+ LOGIC:box(load_output, 0, 0);
+  wrefresh(load_output);
+  /* main downloading logic counters */
+  int c = 1;
+  switch (highlight_main) {
     /* magic goes here */
-  default:
+  case 1:
+    mvwprintw(load_output, 1, c, "%s", "==> I made it to here!\n");
+    wrefresh(load_output);
     break;
   }
+  getch();
 
   /*
    * This is the de-init.
