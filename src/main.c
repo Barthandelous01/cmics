@@ -128,13 +128,22 @@ int main(void){
  LOGIC:box(load_output, 0, 0);
   wrefresh(load_output);
   /* main downloading logic counters */
-  int c = 1;
-  switch (highlight_main) {
-    /* magic goes here */
-  case 1:
-    mvwprintw(load_output, 1, c, "%s", "==> I made it to here!\n");
-    wrefresh(load_output);
+  int c = 1; /* holds place for placement in download window */
+  switch (highlight_main) { /* first main switch */
+  case 1: { /* begin remove comics */
+    //TODO: write function // coimc_switcher(highlight_comics, /* rem_comic */);
     break;
+  } /* end of 'remove comics' */
+  case 2: { /* start of 'download comics' */
+    //TODO: write function // coimc_switcher(highlight_comics, /* down_comic */);
+  } /* end of 'download comics' */
+  case 3: { /* start of 'show comics' */
+    //TODO: write function // coimc_switcher(highlight_comics, /* show_comic */);
+
+  } /* end of 'show comics' */
+  case 999: { /* begin 'show all' */
+    
+  } /* end 'show all' */
   }
   getch();
 
