@@ -1,4 +1,5 @@
 #include "menu.h"
+#include "utils.c"
 #include "url.h"
 
 int main(void){
@@ -132,6 +133,7 @@ int main(void){
   switch (highlight_main) { /* first main switch */
   case 1: { /* begin remove comics */
     //TODO: write function // coimc_switcher(highlight_comics, /* rem_comic */);
+    get_xkcd(load_output, c);
     break;
   } /* end of 'remove comics' */
   case 2: { /* start of 'download comics' */
@@ -142,7 +144,7 @@ int main(void){
 
   } /* end of 'show comics' */
   case 999: { /* begin 'show all' */
-    
+    printf("%d", c);
   } /* end 'show all' */
   }
   getch();
