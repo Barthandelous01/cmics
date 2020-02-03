@@ -56,7 +56,7 @@ void error_print(WINDOW *win, int placement, int is_error, char *good_message, c
 int get_xkcd(WINDOW *win, int placement) {
   mvwprintw(win, placement, 2, "%s", "==> Downloading Site");
   wrefresh(win);
-  int res = get_url("https://www.xkcd.com/", "/var/xkcdtemp.html");
+  int res = get_url("https://www.xkcd.com/", "/tmp/xkcdtemp.html");
   error_print(win, placement, res, "Site downloaded!", "Site not found");
   return 0;
 }
