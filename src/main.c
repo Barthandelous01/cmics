@@ -1,6 +1,7 @@
 #include "menu.h"
 #include "utils.c"
 #include "url.h"
+#include "constants.h"
 
 int main(void){
 
@@ -15,6 +16,10 @@ int main(void){
   noecho();
   cbreak();
   raw();
+  start_color();
+  /* init color pairs */
+  init_pair(ERROR, COLOR_RED, COLOR_BLACK);
+  init_pair(SUCCESS, COLOR_GREEN, COLOR_BLACK);
   curs_set(0); /* makes cursor invisible */
 
   /* Calculate size of window */

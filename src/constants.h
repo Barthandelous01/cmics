@@ -9,6 +9,9 @@ char *main_menu [ ] = {
 };
 int n_main_choices = sizeof(main_menu) / sizeof(char *);
 
+#define ERROR 0
+#define SUCCESS 1
+
 /* Variables for menu formatting */
 char *comics [ ] = {
                     "     XKCD      ",
