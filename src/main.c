@@ -1,5 +1,5 @@
 #include "menu.h"
-#include "utils.c"
+#include "coms.h"
 #include "url.h"
 #include "constants.h"
 

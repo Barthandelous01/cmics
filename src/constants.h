@@ -1,6 +1,9 @@
 #ifndef CONSTANTS_H_
 #define CONSTANTS_H_
 
+#define XKCD_IMG "/.comics/imgs/xkcd.png"
+#define XKCD_HTML "/.comics/html/xkcd.html"
+
 /* variable for menu items */
 char *main_menu [ ] = {
                        "Remove old comics",
