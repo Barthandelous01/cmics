@@ -1,3 +1,3 @@
 # cmics
-![C]("res/c.png")
+![C](res/c.png)
 The `C` based comics downloader.
