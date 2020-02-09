@@ -1,8 +1,8 @@
 <p align=center>
-![C](res/c.png)
+<a href=res/c.png></a>
+</p>
 # cmics
 The `C` based comics downloader.
-</p>
 ## Installation
 Clone the repository into somewhere disposable on your system. Run
 ```sh
