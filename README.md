@@ -1,6 +1,4 @@
-<p align=center>
-<a href=res/c.png></a>
-</p>
+![C](res/c.png)
 # cmics
 The `C` based comics downloader.
 ## Installation
