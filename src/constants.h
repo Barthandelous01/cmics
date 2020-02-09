@@ -1,8 +1,6 @@
 #ifndef CONSTANTS_H_
 #define CONSTANTS_H_
 
-#define XKCD_IMG "/.comics/imgs/xkcd.png"
-#define XKCD_HTML "/.comics/html/xkcd.html"
 
 /* variable for menu items */
 char *main_menu [ ] = {
@@ -28,5 +26,10 @@ char *comics [ ] = {
 };
 /* size of types of comic */
 int n_comics = sizeof(comics) / sizeof(char *);
+
+#include "user_conf.h"
+
+#define XKCD_HTML HOME"/.comics/html/xkcd.html"
+#define XKCD_IMG HOME"/.comics/imgs/xkcd.png"
 
 #endif /* CONSTANTS_H_ */
