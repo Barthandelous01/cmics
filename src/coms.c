@@ -22,4 +22,21 @@ int get_xkcd(WINDOW * win, int placement)
     return 0;
 }
 
+int get_bc(WINDOW *win, int placement)
+{
+     win_print(win, &placement, 2, "==> Downloading Site");
+     int res = get_url("https://johnhartstudios.com/bc/", BC_HTML);
+     error_print(win, &placement, res, "Site downloaded!",
+                 "Site not found");
+     win_print(win, &placement, 2, "==> Finding URL of image");
+     char *url = NULL;
+     url = malloc(100);
+     url = get_com_url(BC_HTML, "/bcstrips/.*.jpg");
+     win_print(win, &placement, 2, "==> Downloading image");
+     int res2 = get_url(url, BC_IMG);
+     error_print(win, &placement, res2, "Image downloaded",
+                 "Image not found");
+     free(url);
+     return 0;
+}
 #endif				/* COMS_C_ */

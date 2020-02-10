@@ -102,23 +102,23 @@ int main(void)
 			--highlight_comics;
 		    break;
 		case KEY_DOWN:
-		    if (highlight_comics == n_comics)
-			highlight_comics = 1;
-		    else
-			++highlight_comics;
-		    break;
+         if (highlight_comics == n_comics)
+              highlight_comics = 1;
+         else
+              ++highlight_comics;
+         break;
 		case 97:
-		    result2 = 999;
-		    break;
+         result2 = 999;
+         break;
 		case 10:
-		    result2 = highlight_comics;
-		    break;
+         result2 = highlight_comics;
+         break;
 		default:
-		    break;
+         break;
 		}
 		print_comic_menu(comic_win, highlight_comics);
 		if (result2 != 0) {
-		    goto LOGIC;
+         goto LOGIC;
 		}
 	    }
 	}
@@ -133,26 +133,32 @@ int main(void)
 
     /* main downloading logic goes here */
     /* This starts the third window */
-  LOGIC:box(load_output, 0, 0);
+LOGIC:box(load_output, 0, 0);
     wrefresh(load_output);
     /* main downloading logic counters */
     int c = 1;			/* holds place for placement in download window */
     switch (highlight_main) {	/* first main switch */
     case 1:{			/* begin remove comics */
-	    //TODO: write function // coimc_switcher(highlight_comics, /* rem_comic */);
-	    get_xkcd(load_output, c);
-	    break;
-	}			/* end of 'remove comics' */
+    }			/* end of 'remove comics' */
     case 2:{			/* start of 'download comics' */
-	    //TODO: write function // coimc_switcher(highlight_comics, /* down_comic */);
-	}			/* end of 'download comics' */
+         switch (highlight_comics) {
+         case 1: {
+              get_xkcd(load_output, c);
+              break;
+         }
+         case 2: {
+              get_bc(load_output, c);
+              break;
+         }
+         }
+    }			/* end of 'download comics' */
     case 3:{			/* start of 'show comics' */
-	    //TODO: write function // coimc_switcher(highlight_comics, /* show_comic */);
+         //TODO: write function // coimc_switcher(highlight_comics, /* show_comic */);
 
-	}			/* end of 'show comics' */
+    }			/* end of 'show comics' */
     case 999:{			/* begin 'show all' */
-	    printf("%d", c);
-	}			/* end 'show all' */
+         printf("%d", c);
+    }			/* end 'show all' */
     }
     getch();
 
