@@ -1,6 +1,7 @@
 #include "menu.h"
 #include "coms.h"
 #include "url.h"
+#include "dirs.h"
 #include "constants.h"
 
 int main(void)
@@ -97,9 +98,9 @@ int main(void)
 		switch (c2) {
 		case KEY_UP:
 		    if (highlight_comics == 1)
-			highlight_comics = n_comics;
+             highlight_comics = n_comics;
 		    else
-			--highlight_comics;
+             --highlight_comics;
 		    break;
 		case KEY_DOWN:
          if (highlight_comics == n_comics)
@@ -135,30 +136,34 @@ int main(void)
     /* This starts the third window */
 LOGIC:box(load_output, 0, 0);
     wrefresh(load_output);
-    /* main downloading logic counters */
+    /* here's where directory checks and such go */
     int c = 1;			/* holds place for placement in download window */
-    switch (highlight_main) {	/* first main switch */
+    check_dirs(load_output, &c);
+    switch (result1) {	/* first main switch */
     case 1:{			/* begin remove comics */
-    }			/* end of 'remove comics' */
+
+    } break;			/* end of 'remove comics' */
     case 2:{			/* start of 'download comics' */
-         switch (highlight_comics) {
+         switch (result2) {
          case 1: {
-              get_xkcd(load_output, c);
-              break;
-         }
+              get_xkcd(load_output, &c);
+         } break;
          case 2: {
-              get_bc(load_output, c);
-              break;
+              get_bc(load_output, &c);
+         } break;
+         case 999: {
+              get_xkcd(load_output, &c);
+              get_bc(load_output, &c);
+         } break;
          }
-         }
-    }			/* end of 'download comics' */
+    }	break;		/* end of 'download comics' */
     case 3:{			/* start of 'show comics' */
          //TODO: write function // coimc_switcher(highlight_comics, /* show_comic */);
 
-    }			/* end of 'show comics' */
+    }	break;		/* end of 'show comics' */
     case 999:{			/* begin 'show all' */
          printf("%d", c);
-    }			/* end 'show all' */
+    }	break;		/* end 'show all' */
     }
     getch();
 

@@ -31,10 +31,15 @@ int n_comics = sizeof(comics) / sizeof(char *);
 
 #include "user_conf.h"
 
-#define XKCD_HTML HOME"/.comics/html/xkcd.html"
-#define XKCD_IMG HOME"/.comics/imgs/xkcd.png"
+#define DIR HOME"/.comics"
 
-#define BC_HTML HOME"/.comics/html/bc.html"
-#define BC_IMG HOME"/.comics/imgs/bc.jpg"
+#define IMGS DIR"/imgs"
+#define HTML DIR"/html"
+
+#define XKCD_HTML HTML"/xkcd.html"
+#define XKCD_IMG IMGS"/xkcd.png"
+
+#define BC_HTML HTML"/bc.html"
+#define BC_IMG IMGS"/bc.jpg"
 
 #endif				/* CONSTANTS_H_ */
