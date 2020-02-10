@@ -7,7 +7,7 @@
 
 int get_url(char *url, char *file)
 {
-    char command[100];
+    char command[200];
     strcpy(command, "curl -s ");
     strcat(command, url);
     strcat(command, " > ");

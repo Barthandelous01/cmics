@@ -5,3 +5,4 @@
 *.org
 *.dSYM
 *.plist
+*.c~

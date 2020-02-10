@@ -31,9 +31,11 @@ int get_bc(WINDOW *win, int placement)
      win_print(win, &placement, 2, "==> Finding URL of image");
      char *url = NULL;
      url = malloc(100);
-     url = get_com_url(BC_HTML, "/bcstrips/.*.jpg");
+     char final[100] = "https://johnhartstudios.com";
+     url = get_com_url(BC_HTML, "/bcstrips/[^\"]*");
+     snprintf(final, sizeof(final), "%s%s", final, url);
      win_print(win, &placement, 2, "==> Downloading image");
-     int res2 = get_url(url, BC_IMG);
+     int res2 = get_url(final, BC_IMG);
      error_print(win, &placement, res2, "Image downloaded",
                  "Image not found");
      free(url);
