@@ -3,6 +3,6 @@
 
 #include "coms.c"
 
-int get_xkcd(WINDOW *win, int placement);
+int get_xkcd(WINDOW * win, int placement);
 
-#endif /* COMS_H_ */
+#endif				/* COMS_H_ */

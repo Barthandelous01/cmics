@@ -6,47 +6,49 @@
 
 #include "constants.h"
 
-void print_main_menu(WINDOW *menu_win, int highlight) {
-  /* Holder variables for positions of highlight and print iteration */
-  int x, y;
-  x = 2;
-  y = 1;
-  /* starts formatting */
-  box(menu_win,0,0);
-  /* iterate over values. When highlight is hit, change attributes */
-  for (int i = 0; i < n_main_choices; ++i) {
-    if (highlight == i + 1) {
-      wattron(menu_win, A_REVERSE);
-      mvwprintw(menu_win, y, x, "%s", main_menu[i]);
-      wattroff(menu_win, A_REVERSE);
-    } else {
-      mvwprintw(menu_win, y, x, "%s", main_menu[i]);
+void print_main_menu(WINDOW * menu_win, int highlight)
+{
+    /* Holder variables for positions of highlight and print iteration */
+    int x, y;
+    x = 2;
+    y = 1;
+    /* starts formatting */
+    box(menu_win, 0, 0);
+    /* iterate over values. When highlight is hit, change attributes */
+    for (int i = 0; i < n_main_choices; ++i) {
+	if (highlight == i + 1) {
+	    wattron(menu_win, A_REVERSE);
+	    mvwprintw(menu_win, y, x, "%s", main_menu[i]);
+	    wattroff(menu_win, A_REVERSE);
+	} else {
+	    mvwprintw(menu_win, y, x, "%s", main_menu[i]);
+	}
+	++y;
     }
-    ++y;
-  }
-  wrefresh(menu_win);
+    wrefresh(menu_win);
 }
 
-void print_comic_menu (WINDOW *menu_win, int highlight) {
+void print_comic_menu(WINDOW * menu_win, int highlight)
+{
 
-  /* Holder variables for positions of highlight and print iteration */
-  int x, y;
-  x = 2;
-  y = 1;
-  /* starts formatting */
-  box(menu_win,0,0);
-  /* iterate over values. When highlight is hit, change attributes */
-  for (int i = 0; i < n_comics; ++i) {
-    if (highlight == i + 1) {
-      wattron(menu_win, A_REVERSE);
-      mvwprintw(menu_win, y, x, "%s", comics[i]);
-      wattroff(menu_win, A_REVERSE);
-    } else {
-      mvwprintw(menu_win, y, x, "%s", comics[i]);
+    /* Holder variables for positions of highlight and print iteration */
+    int x, y;
+    x = 2;
+    y = 1;
+    /* starts formatting */
+    box(menu_win, 0, 0);
+    /* iterate over values. When highlight is hit, change attributes */
+    for (int i = 0; i < n_comics; ++i) {
+	if (highlight == i + 1) {
+	    wattron(menu_win, A_REVERSE);
+	    mvwprintw(menu_win, y, x, "%s", comics[i]);
+	    wattroff(menu_win, A_REVERSE);
+	} else {
+	    mvwprintw(menu_win, y, x, "%s", comics[i]);
+	}
+	++y;
     }
-    ++y;
-  }
-  wrefresh(menu_win);
+    wrefresh(menu_win);
 }
 
-#endif /* MENU_C_ */
+#endif				/* MENU_C_ */

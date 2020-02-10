@@ -5,14 +5,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-int get_url(char *url, char *file) {
-  char command[100];
-  strcpy(command, "curl -s ");
-  strcat(command, url);
-  strcat(command, " > ");
-  strcat(command, file);
-  int result = system(command);
-  return result;
+int get_url(char *url, char *file)
+{
+    char command[100];
+    strcpy(command, "curl -s ");
+    strcat(command, url);
+    strcat(command, " > ");
+    strcat(command, file);
+    int result = system(command);
+    return result;
 }
 
-#endif /* URL_C_ */
+#endif				/* URL_C_ */
