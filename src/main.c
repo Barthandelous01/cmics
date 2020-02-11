@@ -1,4 +1,5 @@
 #include "menu.h"
+#include "imgs.c"
 #include "coms.h"
 #include "url.h"
 #include "dirs.h"
@@ -71,60 +72,59 @@ int main(void)
 	switch (c1) {
 	case KEY_UP:
 	    if (highlight_main == 1)
-		highlight_main = n_main_choices;
+           highlight_main = n_main_choices;
 	    else
-		--highlight_main;
+           --highlight_main;
 	    break;
 	case KEY_DOWN:
-	    if (highlight_main == n_main_choices)
-		highlight_main = 1;
-	    else
-		++highlight_main;
-	    break;
+       if (highlight_main == n_main_choices)
+            highlight_main = 1;
+       else
+            ++highlight_main;
+       break;
 	case 97:
-	    result1 = 999;
-	    break;
+       result1 = 999;
+       break;
 	case 10:
-	    result1 = highlight_main;
-	    break;
+       result1 = highlight_main;
+       break;
 	default:
-	    break;
+       break;
 	}
 	print_main_menu(my_win, highlight_main);
-      MENU:if (result1 != 0) {
-	    print_comic_menu(comic_win, highlight_comics);
-	    while (1) {
-		c2 = wgetch(comic_win);
-		switch (c2) {
-		case KEY_UP:
-		    if (highlight_comics == 1)
-             highlight_comics = n_comics;
-		    else
-             --highlight_comics;
-		    break;
-		case KEY_DOWN:
-         if (highlight_comics == n_comics)
-              highlight_comics = 1;
-         else
-              ++highlight_comics;
-         break;
-		case 97:
-         result2 = 999;
-         break;
-		case 10:
-         result2 = highlight_comics;
-         break;
-		default:
-         break;
-		}
-		print_comic_menu(comic_win, highlight_comics);
-		if (result2 != 0) {
-         goto LOGIC;
-		}
-	    }
+    MENU:if (result1 != 0) {
+       print_comic_menu(comic_win, highlight_comics);
+       while (1) {
+            c2 = wgetch(comic_win);
+            switch (c2) {
+            case KEY_UP:
+                 if (highlight_comics == 1)
+                      highlight_comics = n_comics;
+                 else
+                      --highlight_comics;
+                 break;
+            case KEY_DOWN:
+                 if (highlight_comics == n_comics)
+                      highlight_comics = 1;
+                 else
+                      ++highlight_comics;
+                 break;
+            case 97:
+                 result2 = 999;
+                 break;
+            case 10:
+                 result2 = highlight_comics;
+                 break;
+            default:
+                 break;
+            }
+            print_comic_menu(comic_win, highlight_comics);
+            if (result2 != 0) {
+                 goto LOGIC;
+            }
+       }
 	}
     }
-
     /*
      * Goto out of the selection loop
      * (only way to not kill the loops, unfortunately).
@@ -140,9 +140,7 @@ LOGIC:box(load_output, 0, 0);
     int c = 1;			/* holds place for placement in download window */
     check_dirs(load_output, &c);
     switch (result1) {	/* first main switch */
-    case 1:{			/* begin remove comics */
-
-    } break;			/* end of 'remove comics' */
+    case 1:{
     case 2:{			/* start of 'download comics' */
          switch (result2) {
          case 1: {
@@ -158,14 +156,20 @@ LOGIC:box(load_output, 0, 0);
          }
     }	break;		/* end of 'download comics' */
     case 3:{			/* start of 'show comics' */
-         //TODO: write function // coimc_switcher(highlight_comics, /* show_comic */);
-
+         switch (result2) {
+         case 1: {
+              show_img(XKCD_IMG);
+         } break;
+         case 2: {
+              show_img(BC_IMG);
+         } break;
+         }
+    } break;			/* end of 'remove comics' */
     }	break;		/* end of 'show comics' */
     case 999:{			/* begin 'show all' */
          printf("%d", c);
     }	break;		/* end 'show all' */
     }
-    getch();
 
     /*
      * This is the de-init.
@@ -178,7 +182,6 @@ LOGIC:box(load_output, 0, 0);
     delwin(echo_buffer);
 
     /* removes artifacts. Press any key to quit. */
-    clrtoeol();
     refresh();
     getch();
     endwin();
