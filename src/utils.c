@@ -35,7 +35,6 @@ void error_print(WINDOW * win, int *placement, int is_error,
      if (is_error == 1) {
           wattroff(win, COLOR_PAIR(ERROR));
           mvwprintw(win, *placement, 5, "%s", bad_message);
-          exit(0);
      } else {
           wattroff(win, COLOR_PAIR(SUCCESS));
           mvwprintw(win, *placement, 5, "%s", good_message);
