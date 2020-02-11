@@ -6,4 +6,4 @@
 *.dSYM
 *.plist
 *.c~
-src/user_config.h
+src/user_conf.h
