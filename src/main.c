@@ -4,6 +4,7 @@
 #include "url.h"
 #include "dirs.h"
 #include "constants.h"
+#include "rm.c"
 
 int main(void)
 {
@@ -135,7 +136,40 @@ LOGIC:box(load_output, 0, 0);
      switch (result1) {	/* first main switch */
      case 1:{
           /* remove comics */
-
+          switch (result2) {
+          case 1: {
+               rm(load_output, &c, XKCD_IMG);
+               rm(load_output, &c, XKCD_HTML);
+          } break;
+          case 2: {
+               rm(load_output, &c, BC_IMG);
+               rm(load_output, &c, BC_HTML);
+          } break;
+          case 3: {
+               rm(load_output, &c, GARFIELD_IMG);
+               rm(load_output, &c, GARFIELD_HTML);
+          } break;
+          case 4: {
+               rm(load_output, &c, FAR_SIDE_IMG);
+               rm(load_output, &c, FAR_SIDE_HTML);
+          } break;
+          case 5: {
+               rm(load_output, &c, DILBERT_IMG);
+               rm(load_output, &c, DILBERT_HTML);
+          } break;
+          case 999: {
+               rm(load_output, &c, XKCD_IMG);
+               rm(load_output, &c, XKCD_HTML);
+               rm(load_output, &c, BC_IMG);
+               rm(load_output, &c, BC_HTML);
+               rm(load_output, &c, GARFIELD_IMG);
+               rm(load_output, &c, GARFIELD_HTML);
+               rm(load_output, &c, FAR_SIDE_IMG);
+               rm(load_output, &c, FAR_SIDE_HTML);
+               rm(load_output, &c, DILBERT_IMG);
+               rm(load_output, &c, DILBERT_HTML);
+          } break;
+          }
           /* end remove comics */
      }	break;
 
@@ -148,9 +182,21 @@ LOGIC:box(load_output, 0, 0);
           case 2: {
                get_bc(load_output, &c);
           } break;
+          case 3: {
+               get_garfield(load_output, &c);
+          } break;
+          case 4: {
+               get_far_side(load_output, &c);
+          } break;
+          case 5: {
+               get_dilbert(load_output, &c);
+          } break;
           case 999: {
                get_xkcd(load_output, &c);
                get_bc(load_output, &c);
+               get_garfield(load_output, &c);
+               get_far_side(load_output, &c);
+               get_dilbert(load_output, &c);
           } break;
           }
           /* end download comics */
@@ -165,9 +211,21 @@ LOGIC:box(load_output, 0, 0);
           case 2: {
                show_img(BC_IMG);
           } break;
+          case 3: {
+               show_img(GARFIELD_IMG);
+          } break;
+          case 4: {
+               show_img(FAR_SIDE_IMG);
+          } break;
+          case 5: {
+               show_img(DILBERT_IMG);
+          } break;
           case 999: {
                show_img(XKCD_IMG);
                show_img(BC_IMG);
+               show_img(GARFIELD_IMG);
+               show_img(FAR_SIDE_IMG);
+               show_img(DILBERT_IMG);
           } break;
           }
           /* end show comics */
@@ -175,7 +233,39 @@ LOGIC:box(load_output, 0, 0);
 
      case 999:{
           /* begin all main menu */
-
+          /* This'll be last, until all the others are built in */
+          switch (result2) {
+          case 1: {
+               rm(load_output, &c, XKCD_IMG);
+               rm(load_output, &c, XKCD_HTML);
+               get_xkcd(load_output, &c);
+               show_img(XKCD_IMG);
+          } break;
+          case 2: {
+               rm(load_output, &c, BC_IMG);
+               rm(load_output, &c, BC_HTML);
+               get_bc(load_output, &c);
+               show_img(BC_IMG);
+          } break;
+          case 3: {
+               rm(load_output, &c, GARFIELD_IMG);
+               rm(load_output, &c, GARFIELD_HTML);
+               get_garfield(load_output, &c);
+               show_img(GARFIELD_IMG);
+          } break;
+          case 4: {
+               rm(load_output, &c, FAR_SIDE_IMG);
+               rm(load_output, &c, FAR_SIDE_HTML);
+               get_far_side(load_output, &c);
+               show_img(FAR_SIDE_IMG);
+          } break;
+          case 5: {
+               rm(load_output, &c, DILBERT_IMG);
+               rm(load_output, &c, DILBERT_HTML);
+               get_dilbert(load_output, &c);
+               show_img(DILBERT_IMG);
+          } break;
+          }
           /* end all main menu */
      }	break;
      }

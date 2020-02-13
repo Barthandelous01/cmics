@@ -44,4 +44,66 @@ int get_bc(WINDOW *win, int *placement)
      return 0;
 }
 
+int get_garfield(WINDOW *win, int *placement)
+{
+     win_print(win, placement, 2, "===> Garfield");
+     win_print(win, placement, 2, "==> Downloading Site");
+     int res = get_url("https://garfield.com", GARFIELD_HTML);
+     error_print(win, placement, res, "Site downloaded!",
+                 "Site not found");
+     win_print(win, placement, 2, "==> Finding URL of image");
+     char *url = NULL;
+     url = malloc(100);
+     url = get_com_url(GARFIELD_HTML, "https://[^\"]*.gif");
+     win_print(win, placement, 2, "==> Downloading image");
+     int res2 = get_url(url, GARFIELD_IMG);
+     error_print(win, placement, res2, "Image downloaded",
+                 "Image not found");
+     free(url);
+     return 0;
+}
+
+int get_far_side (WINDOW *win, int *placement)
+{
+     win_print(win, placement, 2, "===> The Far Side");
+     win_print(win, placement, 2, "==> Downloading Site");
+     int res = get_url("https://www.thefarside.com", FAR_SIDE_HTML);
+     error_print(win, placement, res, "Site downloaded!",
+                 "Site not found");
+     win_print(win, placement, 2, "==> Finding URL of image");
+     char *url = NULL;
+     url = malloc(100);
+     url = get_com_url(FAR_SIDE_HTML, "https://assets.thefarside.com/uploads/splash[^\"]*.jpg");
+     win_print(win, placement, 2, "==> Downloading image");
+     int res2 = get_url(url, FAR_SIDE_IMG);
+     error_print(win, placement, res2, "Image downloaded",
+                 "Image not found");
+     free(url);
+     return 0;
+}
+
+int get_dilbert (WINDOW *win, int *placement)
+{
+     win_print(win, placement, 2, "===> Dilbert");
+     win_print(win, placement, 2, "==> Downloading Site");
+     int res = get_url("https://dilbert.com", DILBERT_HTML);
+     error_print(win, placement, res, "Site downloaded!",
+                 "Site not found");
+     win_print(win, placement, 2, "==> Finding URL of image");
+     char *url = NULL;
+     url = malloc(100);
+     url = get_com_url(DILBERT_HTML, "assets.amuniversal.com/([a-f]|[[:digit:]]){32}");
+     char *final = NULL;
+     final = malloc(150);
+     strcpy(final, "https://");
+     strcat(final, url);
+     win_print(win, placement, 2, "==> Downloading image");
+     int res2 = get_url(url, DILBERT_IMG);
+     error_print(win, placement, res2, "Image downloaded",
+                 "Image not found");
+     free(final);
+     free(url);
+     return 0;
+}
+
 #endif				/* COMS_C_ */
