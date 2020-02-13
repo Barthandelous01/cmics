@@ -157,6 +157,10 @@ LOGIC:box(load_output, 0, 0);
                rm(load_output, &c, DILBERT_IMG);
                rm(load_output, &c, DILBERT_HTML);
           } break;
+          case 6: {
+               rm(load_output, &c, FAMILY_CIRCUS_IMG);
+               rm(load_output, &c, FAMILY_CIRCUS_HTML);
+          } break;
           case 999: {
                rm(load_output, &c, XKCD_IMG);
                rm(load_output, &c, XKCD_HTML);
@@ -191,12 +195,16 @@ LOGIC:box(load_output, 0, 0);
           case 5: {
                get_dilbert(load_output, &c);
           } break;
+          case 6: {
+               get_family_circus(load_output, &c);
+          } break;
           case 999: {
                get_xkcd(load_output, &c);
                get_bc(load_output, &c);
                get_garfield(load_output, &c);
                get_far_side(load_output, &c);
                get_dilbert(load_output, &c);
+               get_family_circus(load_output, &c);
           } break;
           }
           /* end download comics */
@@ -220,12 +228,16 @@ LOGIC:box(load_output, 0, 0);
           case 5: {
                show_img(DILBERT_IMG);
           } break;
+          case 6: {
+               show_img(FAMILY_CIRCUS_IMG);
+          } break;
           case 999: {
                show_img(XKCD_IMG);
                show_img(BC_IMG);
                show_img(GARFIELD_IMG);
                show_img(FAR_SIDE_IMG);
                show_img(DILBERT_IMG);
+               show_img(FAMILY_CIRCUS_IMG);
           } break;
           }
           /* end show comics */
@@ -265,6 +277,12 @@ LOGIC:box(load_output, 0, 0);
                get_dilbert(load_output, &c);
                show_img(DILBERT_IMG);
           } break;
+          case 6: {
+               rm(load_output, &c, FAMILY_CIRCUS_IMG);
+               rm(load_output, &c, FAMILY_CIRCUS_HTML);
+               get_family_circus(load_output, &c);
+               show_img(FAMILY_CIRCUS_IMG);
+          }
           case 999: {
                rm(load_output, &c, XKCD_IMG);
                rm(load_output, &c, XKCD_HTML);
@@ -286,6 +304,10 @@ LOGIC:box(load_output, 0, 0);
                rm(load_output, &c, DILBERT_HTML);
                get_dilbert(load_output, &c);
                show_img(DILBERT_IMG);
+               rm(load_output, &c, FAMILY_CIRCUS_IMG);
+               rm(load_output, &c, FAMILY_CIRCUS_HTML);
+               get_family_circus(load_output, &c);
+               show_img(FAMILY_CIRCUS_IMG);
           }
           }
           /* end all main menu */

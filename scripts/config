@@ -7,3 +7,8 @@ echo "#ifndef USER_CONF_H_
 
 #endif /* USER_CONF_H_ */" >> ../src/user_conf.h
 
+if ../scripts/curl_test.sh; then
+    echo ""
+else
+    echo 'You need to install cURL.'
+fi

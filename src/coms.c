@@ -106,4 +106,22 @@ int get_dilbert (WINDOW *win, int *placement)
      return 0;
 }
 
+int get_family_circus(WINDOW *win, int *placement)
+{
+     win_print(win, placement, 2, "===> Family Circus");
+     win_print(win, placement, 2, "==> Downloading Site");
+     int res = get_url("https://www.arcamax.com/thefunnies/familycircus/", FAMILY_CIRCUS_HTML);
+     error_print(win, placement, res, "Site downloaded!",
+                 "Site not found");
+     win_print(win, placement, 2, "==> Finding URL of image");
+     char *url = NULL;
+     url = malloc(100);
+     url = get_com_url(FAMILY_CIRCUS_HTML, "https://www.arcamax.com/newspics/.*.jpg");
+     win_print(win, placement, 2, "==> Downloading image");
+     int res2 = get_url(url, FAMILY_CIRCUS_IMG);
+     error_print(win, placement, res2, "Image downloaded",
+                 "Image not found");
+     free(url);
+     return 0;
+}
 #endif				/* COMS_C_ */
