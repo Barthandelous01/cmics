@@ -8,7 +8,7 @@
 
 void show_img(char *img)
 {
-     char cmd[200] = "/Users/calebbrzezinski/Desktop/Caleb\\'s\\ Stuff/programming/C/comics/src/img"; /*"/usr/local/bin/img "; */
+     char cmd[200] = "/usr/local/bin/img ";
      strcat(cmd, " ");
      strcat(cmd, img);
      system(cmd);

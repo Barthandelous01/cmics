@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+install ../src/imgs /usr/local/bin
+install ../src/cmics /usr/local/bin
