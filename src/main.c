@@ -265,6 +265,28 @@ LOGIC:box(load_output, 0, 0);
                get_dilbert(load_output, &c);
                show_img(DILBERT_IMG);
           } break;
+          case 999: {
+               rm(load_output, &c, XKCD_IMG);
+               rm(load_output, &c, XKCD_HTML);
+               get_xkcd(load_output, &c);
+               show_img(XKCD_IMG);
+               rm(load_output, &c, BC_IMG);
+               rm(load_output, &c, BC_HTML);
+               get_bc(load_output, &c);
+               show_img(BC_IMG);
+               rm(load_output, &c, GARFIELD_IMG);
+               rm(load_output, &c, GARFIELD_HTML);
+               get_garfield(load_output, &c);
+               show_img(GARFIELD_IMG);
+               rm(load_output, &c, FAR_SIDE_IMG);
+               rm(load_output, &c, FAR_SIDE_HTML);
+               get_far_side(load_output, &c);
+               show_img(FAR_SIDE_IMG);
+               rm(load_output, &c, DILBERT_IMG);
+               rm(load_output, &c, DILBERT_HTML);
+               get_dilbert(load_output, &c);
+               show_img(DILBERT_IMG);
+          }
           }
           /* end all main menu */
      }	break;
