@@ -8,7 +8,7 @@ cd ~/path/to/application/cmics/
 ```
 and then run the makefiles.
 ```sh
-make configure # This will configure some config header files before usage
+make config # This will configure some config header files before usage
 make           # This will build the program
 make install   # This will create the directories and move the binary to /usr/local/bin or equivalent
 ```
