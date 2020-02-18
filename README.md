@@ -25,6 +25,9 @@ make config    # This will configure some config header files before usage
 make           # This will build the program
 make install   # This will create the directories and move the binary to /usr/local/bin or equivalent
                # This may also require root
+# This is optional
+make clean     # This removes the repository. It just runs rm -rf ../../cmics (the default directory
+               # that it is installed to. You could do it by hand if you prefer.
 ```
 
 Voila! You're done!
