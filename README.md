@@ -4,17 +4,34 @@ The `C` based comics downloader.
 ## Installation
 Clone the repository into somewhere disposable on your system. Run
 ```sh
-cd ~/path/to/application/cmics/
+cd ~/path/to/application/cmics/src
 ```
-and then run the makefiles.
+... install the prereques ...
 ```sh
-make config # This will configure some config header files before usage
+# An example Debian system
+sudo apt-get upgrade
+sudo apt-get install libncurses5-dev libncursesw5-dev
+sudo apt-get install libcurl4-gnutls-dev
+
+# If python isn't already isntalled, run
+sudo apt-get install python3-pip
+
+# Finally, install python dependancies
+pip3 install -r requirements.txt
+```
+and then run the make process..
+```sh
+make config    # This will configure some config header files before usage
 make           # This will build the program
 make install   # This will create the directories and move the binary to /usr/local/bin or equivalent
+               # This may also require root
 ```
 
 Voila! You're done!
+If you want to make any changes to the source code, go ahead. 
+## Maintinence
+This code is completely open-source and modifiable under the BSD 3-term liscense. However, for best practice, it is reccomended that all changes or submissions follow the K&R bracing style, and comply to the gnu99 C standard. As a warning: **GNU AND BSD INDENT WILL NOT FORMAT THIS CODE CORRECTLY!** They make errors because of the deeply-nested switch statements that form most of the menu and backend logic of this program.
 ## usage
-Simply call `cmics` from the command line. No arguments necessary.
+Simply call `cmics` from the command line. No arguments necessary. Or supported, for that matter.
 ## Inspiration
 This is a `C` port of the earlier [comic-downloader](https://github.com/Barthandelous01/Comic-Downloader). All the features are ported, except for the CLI-argument based functionality. As a matter of fact, `python` is still a dependency for displaying images!
