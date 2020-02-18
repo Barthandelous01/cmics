@@ -21,7 +21,9 @@ char *comics[] = {
     "    Garfield   ",
     "  The Far Side ",
     "    Dilbert    ",
-    " Family Circus "
+    " Family Circus ",
+    "    Blondie    ",
+    " Beetle Bailey "
 };
 
 /* size of types of comic */
@@ -51,5 +53,8 @@ int n_comics = sizeof(comics) / sizeof(char *);
 
 #define FAMILY_CIRCUS_HTML HTML"/family_circus.html"
 #define FAMILY_CIRCUS_IMG IMGS"/family_circus.gif"
+
+#define BEETLE_HTML HTML"/beetle.html"
+#define BEETLE_IMG IMGS"/beetle.gif"
 
 #endif				/* CONSTANTS_H_ */
