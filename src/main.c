@@ -161,6 +161,10 @@ LOGIC:box(load_output, 0, 0);
                rm(load_output, &c, FAMILY_CIRCUS_IMG);
                rm(load_output, &c, FAMILY_CIRCUS_HTML);
           } break;
+          case 7: {
+               rm(load_output, &c, BLONDIE_IMG);
+               rm(load_output, &c, BLONDIE_HTML);
+          }
           case 8: {
                rm(load_output, &c, BEETLE_IMG);
                rm(load_output, &c, BEETLE_HTML);
@@ -176,6 +180,8 @@ LOGIC:box(load_output, 0, 0);
                rm(load_output, &c, FAR_SIDE_HTML);
                rm(load_output, &c, DILBERT_IMG);
                rm(load_output, &c, DILBERT_HTML);
+               rm(load_output, &c, BLONDIE_IMG);
+               rm(load_output, &c, BLONDIE_HTML);
                rm(load_output, &c, BEETLE_IMG);
                rm(load_output, &c, BEETLE_HTML);
           } break;
@@ -204,6 +210,9 @@ LOGIC:box(load_output, 0, 0);
           case 6: {
                get_family_circus(load_output, &c);
           } break;
+          case 7: {
+               get_blondie(load_output, &c);
+          } break;
           case 8: {
                get_beetle_bailey(load_output, &c);
           } break;
@@ -214,6 +223,7 @@ LOGIC:box(load_output, 0, 0);
                get_far_side(load_output, &c);
                get_dilbert(load_output, &c);
                get_family_circus(load_output, &c);
+               get_blondie(load_output, &c);
                get_beetle_bailey(load_output, &c);
           } break;
           }
@@ -241,6 +251,9 @@ LOGIC:box(load_output, 0, 0);
           case 6: {
                show_img(FAMILY_CIRCUS_IMG);
           } break;
+          case 7: {
+               show_img(BLONDIE_IMG);
+          } break;
           case 8: {
                show_img(BEETLE_IMG);
           } break;
@@ -251,6 +264,7 @@ LOGIC:box(load_output, 0, 0);
                show_img(FAR_SIDE_IMG);
                show_img(DILBERT_IMG);
                show_img(FAMILY_CIRCUS_IMG);
+               show_img(BLONDIE_IMG);
                show_img(BEETLE_IMG);
           } break;
           }
@@ -296,7 +310,13 @@ LOGIC:box(load_output, 0, 0);
                rm(load_output, &c, FAMILY_CIRCUS_HTML);
                get_family_circus(load_output, &c);
                show_img(FAMILY_CIRCUS_IMG);
-          }
+          } break;
+          case 7: {
+               rm(load_output, &c, BLONDIE_IMG);
+               rm(load_output, &c, BLONDIE_HTML);
+               get_blondie(load_output, &c);
+               show_img(BLONDIE_IMG);
+          } break;
           case 8: {
                rm(load_output, &c, BEETLE_IMG);
                rm(load_output, &c, BEETLE_HTML);
@@ -328,11 +348,15 @@ LOGIC:box(load_output, 0, 0);
                rm(load_output, &c, FAMILY_CIRCUS_HTML);
                get_family_circus(load_output, &c);
                show_img(FAMILY_CIRCUS_IMG);
+               rm(load_output, &c, BLONDIE_IMG);
+               rm(load_output, &c, BLONDIE_HTML);
+               get_blondie(load_output, &c);
+               show_img(BLONDIE_IMG);
                rm(load_output, &c, BEETLE_IMG);
                rm(load_output, &c, BEETLE_HTML);
                get_beetle_bailey(load_output, &c);
                show_img(BEETLE_IMG);
-          }
+          } break;
           }
           /* end all main menu */
      }	break;

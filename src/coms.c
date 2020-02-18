@@ -145,4 +145,26 @@ int get_beetle_bailey(WINDOW *win, int *placement)
      free(url);
      return 0;
 }
+
+int get_blondie(WINDOW *win, int *placement)
+{
+     win_print(win, placement, 2, "===> Blondie");
+     win_print(win, placement, 2, "==> Downloading Site");
+     int res = get_url("https://www.arcamax.com/thefunnies/blondie", BLONDIE_HTML);
+     error_print(win, placement, res, "Site downloaded!",
+                 "Site not found");
+     win_print(win, placement, 2, "==> Finding URL of image");
+     char *url = NULL;
+     url = malloc(100);
+     char final[200] = "https://www.arcamax.com/";
+     url = get_com_url(BLONDIE_HTML, "/newspics/[^&]*.gif");
+     win_print(win, placement, 2, "==> Downloading image");
+     strcat(final, url);
+     int res2 = get_url(final, BLONDIE_IMG);
+     error_print(win, placement, res2, "Image downloaded",
+                 "Image not found");
+     free(url);
+     return 0;
+}
+
 #endif				/* COMS_C_ */

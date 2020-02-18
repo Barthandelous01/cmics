@@ -54,6 +54,9 @@ int n_comics = sizeof(comics) / sizeof(char *);
 #define FAMILY_CIRCUS_HTML HTML"/family_circus.html"
 #define FAMILY_CIRCUS_IMG IMGS"/family_circus.gif"
 
+#define BLONDIE_HTML HTML"/blondie.html"
+#define BLONDIE_IMG IMGS"/blondie.gif"
+
 #define BEETLE_HTML HTML"/beetle.html"
 #define BEETLE_IMG IMGS"/beetle.gif"
 
