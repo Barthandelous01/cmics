@@ -3,7 +3,8 @@
 
 #include "menu.c"
 
-void print_main_menu(WINDOW * menu_win, int highlight);
-void print_comic_menu(WINDOW * menu_win, int highlight);
+void print_menu(WINDOW * menu_win, int highlight, char *items[], int n);
+int get_menu(WINDOW *win, int *highlight, int n, char *items[]);
+
 
 #endif				/* MENU_H_ */

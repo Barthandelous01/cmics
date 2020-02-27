@@ -1,5 +1,5 @@
-#ifndef RM_H_
-#define RM_H_
+#ifndef RM_C_
+#define RM_C_
 
 #include <stdio.h>
 #include <ncurses.h>
@@ -17,4 +17,4 @@ void rm (WINDOW *win, int *placement, char *file)
      error_print(win, placement, res, strcat(filename, " was deleted!"), strcat(rest, " was not deleted."));
 }
 
-#endif /* RM_H_ */
+#endif /* RM_C_ */

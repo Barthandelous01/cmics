@@ -13,7 +13,6 @@ void win_print(WINDOW * win, int *placement, int x, char *message)
      int newx, y;
      getmaxyx(win, y, newx);
      if (*placement >= y-5) {
-          printf("%s", "I made it");
           *placement = 1;
           wmove(win, 0, 0);
           wclear(win);

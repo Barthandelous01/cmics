@@ -31,33 +31,34 @@ int n_comics = sizeof(comics) / sizeof(char *);
 
 #include "user_conf.h"
 
-#define DIR HOME"/.comics"
+#define DIR                  HOME"/.comics"
 
-#define IMGS DIR"/imgs"
-#define HTML DIR"/html"
+#define IMGS                 DIR"/imgs"
+#define HTML                 DIR"/html"
 
-#define XKCD_HTML HTML"/xkcd.html"
-#define XKCD_IMG IMGS"/xkcd.png"
 
-#define BC_HTML HTML"/bc.html"
-#define BC_IMG IMGS"/bc.jpg"
+#define XKCD_HTML            HTML"/xkcd.html"
+#define XKCD_IMG             IMGS"/xkcd.png"
 
-#define GARFIELD_HTML HTML"/garfield.html"
-#define GARFIELD_IMG IMGS"/garfield.gif"
+#define BC_HTML              HTML"/bc.html"
+#define BC_IMG               IMGS"/bc.jpg"
 
-#define FAR_SIDE_HTML HTML"/far_side.html"
-#define FAR_SIDE_IMG IMGS"/far_side.jpg"
+#define GARFIELD_HTML        HTML"/garfield.html"
+#define GARFIELD_IMG         IMGS"/garfield.gif"
 
-#define DILBERT_HTML HTML"/dilbert.html"
-#define DILBERT_IMG IMGS"/dilbert.jpg"
+#define FAR_SIDE_HTML        HTML"/far_side.html"
+#define FAR_SIDE_IMG         IMGS"/far_side.jpg"
 
-#define FAMILY_CIRCUS_HTML HTML"/family_circus.html"
-#define FAMILY_CIRCUS_IMG IMGS"/family_circus.gif"
+#define DILBERT_HTML         HTML"/dilbert.html"
+#define DILBERT_IMG          IMGS"/dilbert.jpg"
 
-#define BLONDIE_HTML HTML"/blondie.html"
-#define BLONDIE_IMG IMGS"/blondie.gif"
+#define FAMILY_CIRCUS_HTML   HTML"/family_circus.html"
+#define FAMILY_CIRCUS_IMG    IMGS"/family_circus.gif"
 
-#define BEETLE_HTML HTML"/beetle.html"
-#define BEETLE_IMG IMGS"/beetle.gif"
+#define BLONDIE_HTML         HTML"/blondie.html"
+#define BLONDIE_IMG          IMGS"/blondie.gif"
+
+#define BEETLE_HTML          HTML"/beetle.html"
+#define BEETLE_IMG           IMGS"/beetle.gif"
 
 #endif				/* CONSTANTS_H_ */
