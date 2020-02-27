@@ -4,6 +4,8 @@
 #include <ncurses.h>
 
 #include "constants.h"
+#include "imgs.h"
+#include "coms.h"
 #include "rm.h"
 
 void rm_coms(WINDOW *win, int *c, int ccase)
@@ -59,6 +61,86 @@ void rm_coms(WINDOW *win, int *c, int ccase)
           } break;
           }
 
+}
+
+void get_coms(WINDOW *load_output, int *c, int ccase)
+{
+          switch (ccase) {
+          case 1: {
+               get_xkcd(load_output, c);
+          } break;
+          case 2: {
+               get_bc(load_output, c);
+          } break;
+          case 3: {
+               get_garfield(load_output, c);
+          } break;
+          case 4: {
+               get_far_side(load_output, c);
+          } break;
+          case 5: {
+               get_dilbert(load_output, c);
+          } break;
+          case 6: {
+               get_family_circus(load_output, c);
+          } break;
+          case 7: {
+               get_blondie(load_output, c);
+          } break;
+          case 8: {
+               get_beetle_bailey(load_output, c);
+          } break;
+          case 999: {
+               get_xkcd(load_output, c);
+               get_bc(load_output, c);
+               get_garfield(load_output, c);
+               get_far_side(load_output, c);
+               get_dilbert(load_output, c);
+               get_family_circus(load_output, c);
+               get_blondie(load_output, c);
+               get_beetle_bailey(load_output, c);
+          } break;
+          }
+}
+
+void show_coms(int ccase)
+{
+     switch (ccase) {
+     case 1: {
+          show_img(XKCD_IMG);
+     } break;
+     case 2: {
+          show_img(BC_IMG);
+     } break;
+     case 3: {
+          show_img(GARFIELD_IMG);
+     } break;
+     case 4: {
+          show_img(FAR_SIDE_IMG);
+     } break;
+     case 5: {
+          show_img(DILBERT_IMG);
+     } break;
+     case 6: {
+          show_img(FAMILY_CIRCUS_IMG);
+     } break;
+     case 7: {
+          show_img(BLONDIE_IMG);
+     } break;
+     case 8: {
+          show_img(BEETLE_IMG);
+     } break;
+     case 999: {
+          show_img(XKCD_IMG);
+          show_img(BC_IMG);
+          show_img(GARFIELD_IMG);
+          show_img(FAR_SIDE_IMG);
+          show_img(DILBERT_IMG);
+          show_img(FAMILY_CIRCUS_IMG);
+          show_img(BLONDIE_IMG);
+          show_img(BEETLE_IMG);
+     } break;
+     }
 }
 
 #endif /* LOGIC_C_ */
