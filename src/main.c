@@ -1,10 +1,10 @@
 #include "menu.h"
-#include "imgs.c"
+#include "imgs.h"
 #include "coms.h"
 #include "url.h"
 #include "dirs.h"
 #include "constants.h"
-#include "rm.c"
+#include "logic.h"
 
 int main(void)
 {
@@ -51,24 +51,17 @@ int main(void)
      refresh();			/* Refresh stdscr. necessary for showing other windows. */
 
      /* set echo buffer */
-     print_main_menu(my_win, highlight_main);
+     print_menu(my_win, highlight_main, comics, n_main_choices);
      wprintw(echo_buffer, "%s",
              "Use the <up> and <down> keys to move, or press <a> to select all.");
      wrefresh(echo_buffer);
 
-     /*
-      * Main menus
-      */
-     result1 = get_menu(my_win, &highlight_main, &print_main_menu, n_main_choices);
-     result2 = get_menu(comic_win, &highlight_comics, &print_comic_menu, n_comics);
+     /* Gets results for menu */
+     result1 = get_menu(my_win, &highlight_main, n_main_choices, main_menu);
+     result2 = get_menu(comic_win, &highlight_comics, n_comics, comics);
 
-     /*
-      * Goto out of the selection loop
-      * (only way to not kill the loops, unfortunately).
-      * main backend-logic
-      * for downloading, and all that good stuff.
-      */
      /* main downloading logic goes here */
+
      /* This starts the third window */
      box(load_output, 0, 0);
      wrefresh(load_output);
@@ -77,58 +70,7 @@ int main(void)
      check_dirs(load_output, &c);
      switch (result1) {	/* first main switch */
      case 1:{
-          /* remove comics */
-          switch (result2) {
-          case 1: {
-               rm(load_output, &c, XKCD_IMG);
-               rm(load_output, &c, XKCD_HTML);
-          } break;
-          case 2: {
-               rm(load_output, &c, BC_IMG);
-               rm(load_output, &c, BC_HTML);
-          } break;
-          case 3: {
-               rm(load_output, &c, GARFIELD_IMG);
-               rm(load_output, &c, GARFIELD_HTML);
-          } break;
-          case 4: {
-               rm(load_output, &c, FAR_SIDE_IMG);
-               rm(load_output, &c, FAR_SIDE_HTML);
-          } break;
-          case 5: {
-               rm(load_output, &c, DILBERT_IMG);
-               rm(load_output, &c, DILBERT_HTML);
-          } break;
-          case 6: {
-               rm(load_output, &c, FAMILY_CIRCUS_IMG);
-               rm(load_output, &c, FAMILY_CIRCUS_HTML);
-          } break;
-          case 7: {
-               rm(load_output, &c, BLONDIE_IMG);
-               rm(load_output, &c, BLONDIE_HTML);
-          }
-          case 8: {
-               rm(load_output, &c, BEETLE_IMG);
-               rm(load_output, &c, BEETLE_HTML);
-          } break;
-          case 999: {
-               rm(load_output, &c, XKCD_IMG);
-               rm(load_output, &c, XKCD_HTML);
-               rm(load_output, &c, BC_IMG);
-               rm(load_output, &c, BC_HTML);
-               rm(load_output, &c, GARFIELD_IMG);
-               rm(load_output, &c, GARFIELD_HTML);
-               rm(load_output, &c, FAR_SIDE_IMG);
-               rm(load_output, &c, FAR_SIDE_HTML);
-               rm(load_output, &c, DILBERT_IMG);
-               rm(load_output, &c, DILBERT_HTML);
-               rm(load_output, &c, BLONDIE_IMG);
-               rm(load_output, &c, BLONDIE_HTML);
-               rm(load_output, &c, BEETLE_IMG);
-               rm(load_output, &c, BEETLE_HTML);
-          } break;
-          }
-          /* end remove comics */
+          rm_coms(load_output, &c, result2);
      }	break;
 
      case 2: {
