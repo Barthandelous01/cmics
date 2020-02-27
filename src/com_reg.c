@@ -52,6 +52,7 @@ char *get_com_url(char *file /* to search */ ,
     char *url;
     url = regexp(buffer, pattern, &b, &e);
     /* extract answer */
+    fclose(fp);
     return url;
 }
 
