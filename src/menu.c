@@ -6,6 +6,7 @@
 
 #include "constants.h"
 
+
 void print_main_menu(WINDOW * menu_win, int highlight)
 {
     /* Holder variables for positions of highlight and print iteration */
@@ -49,6 +50,39 @@ void print_comic_menu(WINDOW * menu_win, int highlight)
 	++y;
     }
     wrefresh(menu_win);
+}
+
+int get_menu(WINDOW *win, int *highlight, void (*functionPtr)(WINDOW *, int), int n)
+{
+     int c;
+     (*functionPtr)(win, *highlight);
+     while (1) {
+          c = wgetch(win);
+          switch(c) {
+          case KEY_UP:
+               if (*highlight == 1)
+                    *highlight = n;
+               else
+                    --*highlight;
+               break;
+          case KEY_DOWN:
+               if (*highlight == n)
+                    *highlight = 1;
+               else
+                    ++*highlight;
+               break;
+          case 97:
+               return 999;
+               break;
+          case 10:
+               return *highlight;
+               break;
+          default:
+               break;
+
+          }
+          (*functionPtr)(win, *highlight);
+     }
 }
 
 #endif				/* MENU_C_ */

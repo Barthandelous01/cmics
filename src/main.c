@@ -8,10 +8,6 @@
 
 int main(void)
 {
-     /*
-      * Initialization for main logic.
-      * Mostly ncurses crap here.
-      */
      /* ncurses init */
      initscr();
      clear();
@@ -19,107 +15,53 @@ int main(void)
      cbreak();
      raw();
      start_color();
+
      /* init color pairs */
      init_pair(ERROR, COLOR_RED, COLOR_BLACK);
      init_pair(SUCCESS, COLOR_GREEN, COLOR_BLACK);
      curs_set(0);		/* makes cursor invisible */
+
      /* Calculate size of window */
      int y, x;
      getmaxyx(stdscr, y, x);
-     /* Temporary variables */
-     int n_main_choices = 3;
+
      /* Window variables */
      WINDOW *my_win;
      WINDOW *comic_win;
      WINDOW *echo_buffer;
      WINDOW *load_output;
-     /* Choice holding variables */
-     int c1;
-     int c2;
+
      /* result holding variables */
      int result1 = 0;
      int result2 = 0;
+
      /* current selection variables */
      int highlight_main = 1;
      int highlight_comics = 1;
+
      /* initializing new windows */
      my_win = newwin(y - 1, 21, 0, 0);
      comic_win = newwin(y - 1, 20, 0, 21);
      echo_buffer = newwin(1, x - 1, y - 1, 0);
      load_output = newwin(y - 1, x - 41, 0, 41);
+
      /* initialize keypads for windows */
      keypad(comic_win, TRUE);
      keypad(my_win, TRUE);
      refresh();			/* Refresh stdscr. necessary for showing other windows. */
+
+     /* set echo buffer */
      print_main_menu(my_win, highlight_main);
      wprintw(echo_buffer, "%s",
              "Use the <up> and <down> keys to move, or press <a> to select all.");
      wrefresh(echo_buffer);
+
      /*
-      * Main GUI logic loop.
-      * someday, this might get multiple selections.
+      * Main menus
       */
-     /* Main event loop */
-     while (1) {
-          if (result1 != 0)
-               goto MENU;		/* menu acheived, skip this loop */
-          c1 = wgetch(my_win);
-          switch (c1) {
-          case KEY_UP:
-               if (highlight_main == 1)
-                    highlight_main = n_main_choices;
-               else
-                    --highlight_main;
-               break;
-          case KEY_DOWN:
-               if (highlight_main == n_main_choices)
-                    highlight_main = 1;
-               else
-                    ++highlight_main;
-               break;
-          case 97:
-               result1 = 999;
-               break;
-          case 10:
-               result1 = highlight_main;
-               break;
-          default:
-               break;
-          }
-          print_main_menu(my_win, highlight_main);
-     MENU:if (result1 != 0) {
-               print_comic_menu(comic_win, highlight_comics);
-               while (1) {
-                    c2 = wgetch(comic_win);
-                    switch (c2) {
-                    case KEY_UP:
-                         if (highlight_comics == 1)
-                              highlight_comics = n_comics;
-                         else
-                              --highlight_comics;
-                         break;
-                    case KEY_DOWN:
-                         if (highlight_comics == n_comics)
-                              highlight_comics = 1;
-                         else
-                              ++highlight_comics;
-                         break;
-                    case 97:
-                         result2 = 999;
-                         break;
-                    case 10:
-                         result2 = highlight_comics;
-                         break;
-                    default:
-                         break;
-                    }
-                    print_comic_menu(comic_win, highlight_comics);
-                    if (result2 != 0) {
-                         goto LOGIC;
-                    }
-               }
-          }
-     }
+     result1 = get_menu(my_win, &highlight_main, &print_main_menu, n_main_choices);
+     result2 = get_menu(comic_win, &highlight_comics, &print_comic_menu, n_comics);
+
      /*
       * Goto out of the selection loop
       * (only way to not kill the loops, unfortunately).
@@ -128,7 +70,7 @@ int main(void)
       */
      /* main downloading logic goes here */
      /* This starts the third window */
-LOGIC:box(load_output, 0, 0);
+     box(load_output, 0, 0);
      wrefresh(load_output);
      /* here's where directory checks and such go */
      int c = 1;			/* holds place for placement in download window */
