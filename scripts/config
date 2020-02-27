@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+echo "#ifndef USER_CONF_H_
+#define USER_CONF_H_
+
+#define HOME \"$HOME\"
+
+#endif /* USER_CONF_H_ */" >> ../src/user_conf.h
+
+if ../scripts/curl_test.sh; then
+    echo ""
+else
+    echo 'You need to install cURL.'
+fi

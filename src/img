@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+
+import matplotlib.pyplot as plt
+import matplotlib.image as mping
+import sys
+
+def show_img(name):
+    img = mping.imread(name)
+    imgplot = plt.imshow(img)
+    plt.show()
+
+def main():
+    show_img(sys.argv[1])
+
+if __name__ == "__main__":
+  main()

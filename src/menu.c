@@ -3,50 +3,64 @@
 
 #include <ncurses.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "constants.h"
 
-void print_main_menu(WINDOW *menu_win, int highlight) {
-  /* Holder variables for positions of highlight and print iteration */
-  int x, y;
-  x = 2;
-  y = 1;
-  /* starts formatting */
-  box(menu_win,0,0);
-  /* iterate over values. When highlight is hit, change attributes */
-  for (int i = 0; i < n_main_choices; ++i) {
-    if (highlight == i + 1) {
-      wattron(menu_win, A_REVERSE);
-      mvwprintw(menu_win, y, x, "%s", main_menu[i]);
-      wattroff(menu_win, A_REVERSE);
-    } else {
-      mvwprintw(menu_win, y, x, "%s", main_menu[i]);
+
+void print_menu(WINDOW * menu_win, int highlight, char *items[], int n)
+{
+    /* Holder variables for positions of highlight and print iteration */
+    int x, y;
+    x = 2;
+    y = 1;
+    /* starts formatting */
+    box(menu_win, 0, 0);
+    /* iterate over values. When highlight is hit, change attributes */
+    for (int i = 0; i < n; ++i) {
+         if (highlight == i + 1) {
+              wattron(menu_win, A_REVERSE);
+              mvwprintw(menu_win, y, x, "%s", items[i]);
+              wattroff(menu_win, A_REVERSE);
+         } else {
+              mvwprintw(menu_win, y, x, "%s", items[i]);
+         }
+         ++y;
     }
-    ++y;
-  }
-  wrefresh(menu_win);
+    wrefresh(menu_win);
 }
 
-void print_comic_menu (WINDOW *menu_win, int highlight) {
+int get_menu(WINDOW *win, int *highlight, int n, char *items[])
+{
+     int c;
+     print_menu(win, *highlight, items, n);
+     while (1) {
+          c = wgetch(win);
+          switch(c) {
+          case KEY_UP:
+               if (*highlight == 1)
+                    *highlight = n;
+               else
+                    --*highlight;
+               break;
+          case KEY_DOWN:
+               if (*highlight == n)
+                    *highlight = 1;
+               else
+                    ++*highlight;
+               break;
+          case 97:
+               return 999;
+               break;
+          case 10:
+               return *highlight;
+               break;
+          default:
+               break;
 
-  /* Holder variables for positions of highlight and print iteration */
-  int x, y;
-  x = 2;
-  y = 1;
-  /* starts formatting */
-  box(menu_win,0,0);
-  /* iterate over values. When highlight is hit, change attributes */
-  for (int i = 0; i < n_comics; ++i) {
-    if (highlight == i + 1) {
-      wattron(menu_win, A_REVERSE);
-      mvwprintw(menu_win, y, x, "%s", comics[i]);
-      wattroff(menu_win, A_REVERSE);
-    } else {
-      mvwprintw(menu_win, y, x, "%s", comics[i]);
-    }
-    ++y;
-  }
-  wrefresh(menu_win);
+          }
+          print_menu(win, *highlight, items, n);
+     }
 }
 
-#endif /* MENU_C_ */
+#endif				/* MENU_C_ */
