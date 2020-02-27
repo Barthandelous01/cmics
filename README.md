@@ -66,9 +66,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![cmics Screen Shot][product-screenshot]](res/in-use)
 
-
+<img src="res/in-use.png">
 
 ### Built With
 
