@@ -84,7 +84,7 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+To install `cmics`, only a few dependencies are required. Get the following packages with `pip` and your package manager of choice.
 * pip
 ```sh
 pip3 install -r requirements.txt
@@ -97,7 +97,7 @@ sudo apt-get install libcurl4-gnutls-dev
 
 ### Installation
  
-1. Clone the cmics
+1. Clone `cmics`
 ```sh
 git clone https://github.com/Barthandelous01/cmics.git
 ```
@@ -109,13 +109,13 @@ cd ~/path/to/cmics/src
 ```sh
 make config
 make
-sudo make install
+make install # this may require sudo
 ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Cmics is used for aggregating some of the geekier comics that many members of the programming community requires. To automate downloading all of the comics, run `echo -n 'aa' | cmics`. the `-n` is not required, but reccomended if you want to study the results.
 
 
 
