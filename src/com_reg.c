@@ -32,27 +32,27 @@ char *regexp(char *string, char *patrn, int *begin, int *end)
 char *get_com_url(char *file /* to search */ ,
 		  char *pattern /* to search file for */ )
 {
-    /* open file */
-    char *buffer = 0;
-    FILE *fp;
-    fp = fopen(file, "r+");
-    /* get size of file for buffer */
-    if (fp) {
-	fseek(fp, 0, SEEK_END);
-	int length = ftell(fp);
-	fseek(fp, 0, SEEK_SET);
-	buffer = malloc(length);
-	if (buffer) {
-	    fread(buffer, 1, length, fp);
-	}
-    }
-    /* init variables for regex */
-    int b, e;
-    /* perform regex */
-    char *url;
-    url = regexp(buffer, pattern, &b, &e);
-    /* extract answer */
-    return url;
+     /* open file */
+     char *buffer = 0;
+     FILE *fp;
+     fp = fopen(file, "r+");
+     /* get size of file for buffer */
+     if (fp) {
+          fseek(fp, 0, SEEK_END);
+          int length = ftell(fp);
+          fseek(fp, 0, SEEK_SET);
+          buffer = malloc(length);
+          if (buffer) {
+               fread(buffer, 1, length, fp);
+          }
+     }
+     /* init variables for regex */
+     int b, e;
+     /* perform regex */
+     char *url;
+     url = regexp(buffer, pattern, &b, &e);
+     /* extract answer */
+     return url;
 }
 
 #endif				/* COM_REG_C_ */
