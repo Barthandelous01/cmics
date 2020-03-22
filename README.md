@@ -28,7 +28,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/Barthandelous01/cmics">
-    <img src="res/logo.png" alt="Logo" width="80" height="80">
+    <img src="res/logo.png" alt="Logo" height="80">
   </a>
 
   <h3 align="center">cmics</h3>
