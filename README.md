@@ -31,8 +31,6 @@
     <img src="res/logo.png" alt="Logo" height="80">
   </a>
 
-  <h3 align="center">cmics</h3>
-
   <p align="center">
     The C based comics downloader
     <br />
