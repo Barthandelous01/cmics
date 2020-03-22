@@ -44,20 +44,8 @@ void rm_coms(WINDOW *win, int *c, int ccase)
                rm(win, c, BEETLE_HTML);
           } break;
           case 999: {
-               rm(win, c, XKCD_IMG);
-               rm(win, c, XKCD_HTML);
-               rm(win, c, BC_IMG);
-               rm(win, c, BC_HTML);
-               rm(win, c, GARFIELD_IMG);
-               rm(win, c, GARFIELD_HTML);
-               rm(win, c, FAR_SIDE_IMG);
-               rm(win, c, FAR_SIDE_HTML);
-               rm(win, c, DILBERT_IMG);
-               rm(win, c, DILBERT_HTML);
-               rm(win, c, BLONDIE_IMG);
-               rm(win, c, BLONDIE_HTML);
-               rm(win, c, BEETLE_IMG);
-               rm(win, c, BEETLE_HTML);
+               for (int x = 1; x <= 8; x++)
+                    rm_coms(win, c, x);
           } break;
           }
 
@@ -91,14 +79,8 @@ void get_coms(WINDOW *load_output, int *c, int ccase)
                get_beetle_bailey(load_output, c);
           } break;
           case 999: {
-               get_xkcd(load_output, c);
-               get_bc(load_output, c);
-               get_garfield(load_output, c);
-               get_far_side(load_output, c);
-               get_dilbert(load_output, c);
-               get_family_circus(load_output, c);
-               get_blondie(load_output, c);
-               get_beetle_bailey(load_output, c);
+               for (int x = 1; x <= 8; x++)
+                    get_coms(load_output, c, x);
           } break;
           }
 }
@@ -131,14 +113,8 @@ void show_coms(int ccase)
           show_img(BEETLE_IMG);
      } break;
      case 999: {
-          show_img(XKCD_IMG);
-          show_img(BC_IMG);
-          show_img(GARFIELD_IMG);
-          show_img(FAR_SIDE_IMG);
-          show_img(DILBERT_IMG);
-          show_img(FAMILY_CIRCUS_IMG);
-          show_img(BLONDIE_IMG);
-          show_img(BEETLE_IMG);
+          for (int x = 0; x <= 8; x++)
+               show_coms(x);
      } break;
      }
 }
