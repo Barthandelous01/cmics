@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
-
-import matplotlib.pyplot as plt
-import matplotlib.image as mping
 import sys
+import os.path
 
 def show_img(name):
-    img = mping.imread(name)
-    imgplot = plt.imshow(img)
-    plt.show()
+    if os.path.isfile(name):
+        try:
+            import matplotlib.pyplot as plt
+            import matplotlib.image as mping
+            img = mping.imread(name)
+            imgplot = plt.imshow(img)
+            plt.show()
+        except:
+            import webbrowser as wb
+            wb.open(name)
 
 def main():
     show_img(sys.argv[1])
