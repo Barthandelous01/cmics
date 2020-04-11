@@ -72,6 +72,7 @@
 * [gnu99-C](https://www.ansi.org/)
 * [ncurses](https://invisible-island.net/ncurses/)
 * [libcurl](https://curl.haxx.se/libcurl/)
+* GNU Autotools
 
 
 
@@ -94,35 +95,28 @@ sudo apt-get install libcurl4-gnutls-dev
 ```
 
 ### Installation
- 
-1. Clone `cmics`
+`cmics` is maintained using the GNU Autotools. To install, clone and make the build system yourself, or download a tarball, unzip it, and follow the ritual:
 ```sh
-git clone https://github.com/Barthandelous01/cmics.git
-```
-2. Move into the `src` directory
-```sh
-cd ~/path/to/cmics/src
-```
-3. Run the three-part make structure
-```sh
-make config
+./configure
 make
-make install # this may require sudo
+sudo make install
 ```
+**WARNING:** If you want to install `cmics` somewhere else, that's totally fine. However, modify `src/imgs.c` so that the path of the installed `img` script is correct. If this is ommitted, the comics will download and cache correctly, but they *will not* display properly.
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Cmics is used for aggregating some of the geekier comics that many members of the programming community requires. To automate downloading all of the comics, run `echo -n 'aa' | cmics`. the `-n` is not required, but reccomended if you want to study the results.
+Cmics is used for aggregating some of the geekier comics that many members of the programming community enjoy. To automate downloading all of the comics, run `echo -n 'aa' | cmics`. the `-n` is not required, but reccomended if you want to study the results.
 
 
 
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/Barthandelous01/cmics/issues) for a list of proposed features (and known issues).
-
-
+Some things I intend to add one day are:
+ * Another comic (or two). This is limited by keeping the GUI useable for people with small terminals, however.
+ * A CLI-Only option. This feature is currently in development. If you don't care about the speed or the `ncurses` interface and just want CLI-based options, [this project](https://github.com/Barthandelous01/Comic-Downloader), though slow and inelegant, has the CLI support that I intend to impliment in `cmics` at some point.
+ * A more sophisticated image display mechanism than the `img` script.
 
 <!-- CONTRIBUTING -->
 ## Contributing
