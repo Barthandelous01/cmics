@@ -2,10 +2,11 @@
 #define RM_C_
 
 #include <stdio.h>
+#include <string.h>
 #include <ncurses.h>
 
 #include "constants.h"
-#include "utils.c"
+#include "utils.h"
 
 void rm (WINDOW *win, int *placement, char *file)
 {

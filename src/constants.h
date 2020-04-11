@@ -1,37 +1,14 @@
 #ifndef CONSTANTS_H_
 #define CONSTANTS_H_
 
-
-/* variable for menu items */
-char *main_menu[] = {
-    "Remove old comics",
-    " Download comics ",
-    "   View comics   "
-};
-
-int n_main_choices = sizeof(main_menu) / sizeof(char *);
+#define n_main_choices 3
 
 #define ERROR 0
 #define SUCCESS 1
 
-/* Variables for menu formatting */
-char *comics[] = {
-    "     XKCD      ",
-    "      BC       ",
-    "    Garfield   ",
-    "  The Far Side ",
-    "    Dilbert    ",
-    " Family Circus ",
-    "    Blondie    ",
-    " Beetle Bailey "
-};
+#define n_comics 8
 
-/* size of types of comic */
-int n_comics = sizeof(comics) / sizeof(char *);
-
-#include "user_conf.h"
-
-#define DIR                  HOME"/.comics"
+#define DIR                  "/.comics"
 
 #define IMGS                 DIR"/imgs"
 #define HTML                 DIR"/html"

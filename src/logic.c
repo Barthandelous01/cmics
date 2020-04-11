@@ -12,36 +12,36 @@ void rm_coms(WINDOW *win, int *c, int ccase)
 {
      switch (ccase) {
           case 1: {
-               rm(win, c, XKCD_IMG);
-               rm(win, c, XKCD_HTML);
+               rm(win, c, env_macro(XKCD_IMG));
+               rm(win, c, env_macro(XKCD_HTML));
           } break;
           case 2: {
-               rm(win, c, BC_IMG);
-               rm(win, c, BC_HTML);
+               rm(win, c, env_macro(BC_IMG));
+               rm(win, c, env_macro(BC_HTML));
           } break;
           case 3: {
-               rm(win, c, GARFIELD_IMG);
-               rm(win, c, GARFIELD_HTML);
+               rm(win, c, env_macro(GARFIELD_IMG));
+               rm(win, c, env_macro(GARFIELD_HTML));
           } break;
           case 4: {
-               rm(win, c, FAR_SIDE_IMG);
-               rm(win, c, FAR_SIDE_HTML);
+               rm(win, c, env_macro(FAR_SIDE_IMG));
+               rm(win, c, env_macro(FAR_SIDE_HTML));
           } break;
           case 5: {
-               rm(win, c, DILBERT_IMG);
-               rm(win, c, DILBERT_HTML);
+               rm(win, c, env_macro(DILBERT_IMG));
+               rm(win, c, env_macro(DILBERT_HTML));
           } break;
           case 6: {
-               rm(win, c, FAMILY_CIRCUS_IMG);
-               rm(win, c, FAMILY_CIRCUS_HTML);
+               rm(win, c, env_macro(FAMILY_CIRCUS_IMG));
+               rm(win, c, env_macro(FAMILY_CIRCUS_HTML));
           } break;
           case 7: {
-               rm(win, c, BLONDIE_IMG);
-               rm(win, c, BLONDIE_HTML);
+               rm(win, c, env_macro(BLONDIE_IMG));
+               rm(win, c, env_macro(BLONDIE_HTML));
           }
           case 8: {
-               rm(win, c, BEETLE_IMG);
-               rm(win, c, BEETLE_HTML);
+               rm(win, c, env_macro(BEETLE_IMG));
+               rm(win, c, env_macro(BEETLE_HTML));
           } break;
           case 999: {
                for (int x = 1; x <= 8; x++)
@@ -89,28 +89,28 @@ void show_coms(int ccase)
 {
      switch (ccase) {
      case 1: {
-          show_img(XKCD_IMG);
+          show_img(env_macro(XKCD_IMG));
      } break;
      case 2: {
-          show_img(BC_IMG);
+          show_img(env_macro(BC_IMG));
      } break;
      case 3: {
-          show_img(GARFIELD_IMG);
+          show_img(env_macro(GARFIELD_IMG));
      } break;
      case 4: {
-          show_img(FAR_SIDE_IMG);
+          show_img(env_macro(FAR_SIDE_IMG));
      } break;
      case 5: {
-          show_img(DILBERT_IMG);
+          show_img(env_macro(DILBERT_IMG));
      } break;
      case 6: {
-          show_img(FAMILY_CIRCUS_IMG);
+          show_img(env_macro(FAMILY_CIRCUS_IMG));
      } break;
      case 7: {
-          show_img(BLONDIE_IMG);
+          show_img(env_macro(BLONDIE_IMG));
      } break;
      case 8: {
-          show_img(BEETLE_IMG);
+          show_img(env_macro(BEETLE_IMG));
      } break;
      case 999: {
           for (int x = 0; x <= 8; x++)

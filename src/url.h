@@ -1,8 +1,6 @@
 #ifndef URL_H_
 #define URL_H_
 
-#include "url.c"
-
-void get_site(char *url);
+int get_url(char *url, char *file);
 
 #endif				/* URL_H_ */

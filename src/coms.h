@@ -1,8 +1,7 @@
 #ifndef COMS_H_
 #define COMS_H_
 
-#include "coms.c"
-
+char *env_macro(char *macro);
 int get_xkcd(WINDOW * win, int *placement);
 int get_bc(WINDOW *win, int *placement);
 int get_far_side(WINDOW *win, int *placement);

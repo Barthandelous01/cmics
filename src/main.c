@@ -3,6 +3,27 @@
 #include "constants.h"
 #include "logic.h"
 
+/* global variables */
+
+/* variable for menu items */
+char *main_menu[] = {
+     "Remove old comics",
+     " Download comics ",
+     "   View comics   "
+};
+
+/* Variables for menu formatting */
+char *comics[] = {
+     "     XKCD      ",
+     "      BC       ",
+     "    Garfield   ",
+     "  The Far Side ",
+     "    Dilbert    ",
+     " Family Circus ",
+     "    Blondie    ",
+     " Beetle Bailey "
+};
+
 int main(void)
 {
      /* ncurses init */

@@ -10,7 +10,7 @@
 #include <ncurses.h>
 
 #include "constants.h"
-#include "utils.c"
+#include "utils.h"
 
 void check_dir(WINDOW *win, int *placement, char *dir)
 {
