@@ -49,7 +49,7 @@ int main(int argc, char **argv)
      struct hostent *hostinfo;
      hostname = "archlinux.org";
      hostinfo = gethostbyname(hostname);
-     
+
      if (hostinfo == NULL) {
          fprintf(stderr, "%s", "No internet connection found.");
          exit(-1);

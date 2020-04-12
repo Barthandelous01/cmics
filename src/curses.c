@@ -93,7 +93,7 @@ void do_curses_main()
      }	break;
 
      case 2: {
-          rm_coms(load_output, & c, result2);
+          get_coms(load_output, & c, result2);
      } break;
 
      case 3:{

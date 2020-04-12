@@ -25,7 +25,7 @@ int get_xkcd(WINDOW * win, int *placement)
 {
      win_print(win, placement, 2, "===> XKCD");
      win_print(win, placement, 2, "==> Downloading Site");
-     int res = get_url("https://www.xkcd.com/", env_macro(XKCD_HTML));
+     int res = get_url("https://xkcd.com/", env_macro(XKCD_HTML));
      error_print(win, placement, res, "Site downloaded!",
                  "Site not found");
      win_print(win, placement, 2, "==> Finding URL of image");
@@ -153,7 +153,7 @@ int get_beetle_bailey(WINDOW *win, int *placement)
      char *url = NULL;
      url = malloc(100);
      char final[200] = "https://www.arcamax.com/";
-     url = get_com_url(env_macro(BEETLE_HTML), "/newspics/[^&]*.gif");
+     url = get_com_url(env_macro(BEETLE_HTML), "/newspics/[^&]*.jpg");
      win_print(win, placement, 2, "==> Downloading image");
      strcat(final, url);
      int res2 = get_url(final, env_macro(BEETLE_IMG));
@@ -174,7 +174,7 @@ int get_blondie(WINDOW *win, int *placement)
      char *url = NULL;
      url = malloc(100);
      char final[200] = "https://www.arcamax.com/";
-     url = get_com_url(env_macro(BLONDIE_HTML), "/newspics/[^&]*.gif");
+     url = get_com_url(env_macro(BLONDIE_HTML), "/newspics/[^&]*.jpg");
      win_print(win, placement, 2, "==> Downloading image");
      strcat(final, url);
      int res2 = get_url(final, env_macro(BLONDIE_IMG));
