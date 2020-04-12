@@ -5,6 +5,11 @@
 #include "logic.h"
 #include "cli.h"
 
+#include <netdb.h> 
+#include <sys/types.h> 
+#include <sys/socket.h> 
+#include <netinet/in.h> 
+#include <arpa/inet.h>
 #include <config.h>
 #include <stdlib.h>
 #include <getopt.h>
@@ -39,6 +44,18 @@ There is NO WARRANTY, to the extent permitted by law.");
 
 int main(int argc, char **argv)
 {
+     /* do a very cursory check for internet connection */
+     char *hostname;
+     struct hostent *hostinfo;
+     hostname = "archlinux.org";
+     hostinfo = gethostbyname(hostname);
+     
+     if (hostinfo == NULL) {
+         fprintf(stderr, "%s", "No internet connection found.");
+         exit(-1);
+     }
+
+     /* parse options */
      static int quiet = 0;
      static struct option longopts[] = {
           {"version",   no_argument,         NULL,    'V'},
