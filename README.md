@@ -118,9 +118,8 @@ Some things I intend to add one day are:
  * A more sophisticated image display mechanism than the `img` script.
 
 ## Bugs
-There is one known bug in `cmics`. Bug reports are always welcome, simply open an issue.
-Current bugs:
- * If more than three comics are removed via the command line, the third comic is removed twice.
+There are no currently known bugs in `cmics`. If you find a bug, please open an issue on GitHub!
+
 <!-- CONTRIBUTING -->
 ## Contributing
 

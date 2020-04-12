@@ -133,9 +133,11 @@ int get_family_circus(WINDOW *win, int *placement)
      win_print(win, placement, 2, "==> Finding URL of image");
      char *url = NULL;
      url = malloc(100);
-     url = get_com_url(env_macro(FAMILY_CIRCUS_HTML), "https://www.arcamax.com/newspics/.*.jpg");
+     char final[200] = "https://www.arcamax.com/";
+     url = get_com_url(env_macro(FAMILY_CIRCUS_HTML), "/newspics/[^&]*.gif");
      win_print(win, placement, 2, "==> Downloading image");
-     int res2 = get_url(url, env_macro(FAMILY_CIRCUS_IMG));
+     strcat(final, url);
+     int res2 = get_url(final, env_macro(FAMILY_CIRCUS_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
      free(url);
