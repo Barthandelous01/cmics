@@ -14,7 +14,7 @@ I didn't recognize that. Available options are:\n\
     family_circus\n\
     blondie\n\
     beetle_bailey\n");
-     return 8888;
+     return 11;
 }
 
 int com(char *name)

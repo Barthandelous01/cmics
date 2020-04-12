@@ -10,6 +10,7 @@
 #include <ncurses.h>
 
 #include "constants.h"
+#include "coms.h"
 #include "utils.h"
 
 void check_dir(WINDOW *win, int *placement, char *dir)
@@ -25,9 +26,9 @@ void check_dir(WINDOW *win, int *placement, char *dir)
 
 void check_dirs(WINDOW *win, int *placement)
 {
-     check_dir(win, placement, DIR);
-     check_dir(win, placement, IMGS);
-     check_dir(win, placement, HTML);
+     check_dir(win, placement, env_macro(DIR));
+     check_dir(win, placement, env_macro(IMGS));
+     check_dir(win, placement, env_macro(HTML));
 }
 
 

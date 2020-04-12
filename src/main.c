@@ -72,6 +72,13 @@ int main(int argc, char **argv)
                     show_coms(com(argv[optind]));
                }
                break;
+          case 'r':
+               quiet = 1;
+               optind--;
+               for ( ;optind < argc && *argv[optind] != '-'; optind++) {
+                    rm_coms(NULL, 0, com(argv[optind]));
+               }
+               break;
           default:
                quiet = 1;
                break;
