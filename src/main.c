@@ -3,6 +3,7 @@
 #include "dirs.h"
 #include "constants.h"
 #include "logic.h"
+#include "cli.h"
 
 #include <config.h>
 #include <stdlib.h>
@@ -56,6 +57,16 @@ int main(int argc, char **argv)
           case 'h':
                quiet = 1;
                usage();
+               break;
+          case 'd':
+               quiet = 1;
+               optind--;
+               for ( ;optind < argc && *argv[optind] != '-'; optind++) {
+                    get_coms(NULL, 0, com(argv[optind]));
+               }
+               break;
+          default:
+               quiet = 1;
                break;
           }
      }

@@ -24,7 +24,7 @@ void win_print(WINDOW * win, int *placement, int x, char *message)
           ++*placement;
           wrefresh(win);
      } else {
-          printf("%s", message);
+          printf("%s%s", message, "\n");
      }
 }
 
@@ -56,9 +56,9 @@ void error_print(WINDOW * win, int *placement, int is_error,
           wrefresh(win);
      } else {
           if (is_error == 1)
-               fprintf(stderr, "%s", bad_message);
+               fprintf(stderr, "%s%s", bad_message, "\n");
           else
-               fprintf(stdout, "%s", good_message);
+               fprintf(stdout, "%s%s", good_message, "\n");
      }
 }
 
