@@ -65,6 +65,13 @@ int main(int argc, char **argv)
                     get_coms(NULL, 0, com(argv[optind]));
                }
                break;
+          case 's':
+               quiet = 1;
+               optind--;
+               for ( ;optind < argc && *argv[optind] != '-'; optind++) {
+                    show_coms(com(argv[optind]));
+               }
+               break;
           default:
                quiet = 1;
                break;
