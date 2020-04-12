@@ -38,7 +38,7 @@ void rm_coms(WINDOW *win, int *c, int ccase)
           case 7: {
                rm(win, c, env_macro(BLONDIE_IMG));
                rm(win, c, env_macro(BLONDIE_HTML));
-          }
+          } break;
           case 8: {
                rm(win, c, env_macro(BEETLE_IMG));
                rm(win, c, env_macro(BEETLE_HTML));
