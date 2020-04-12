@@ -115,9 +115,12 @@ Cmics is used for aggregating some of the geekier comics that many members of th
 
 Some things I intend to add one day are:
  * Another comic (or two). This is limited by keeping the GUI useable for people with small terminals, however.
- * A CLI-Only option. This feature is currently in development. If you don't care about the speed or the `ncurses` interface and just want CLI-based options, [this project](https://github.com/Barthandelous01/Comic-Downloader), though slow and inelegant, has the CLI support that I intend to impliment in `cmics` at some point.
  * A more sophisticated image display mechanism than the `img` script.
 
+## Bugs
+There is one known bug in `cmics`. Bug reports are always welcome, simply open an issue.
+Current bugs:
+ * If more than three comics are removed via the command line, the third comic is removed twice.
 <!-- CONTRIBUTING -->
 ## Contributing
 
