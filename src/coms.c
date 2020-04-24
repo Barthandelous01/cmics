@@ -200,7 +200,7 @@ int get_beetle_bailey(WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(final, env_macro(BEETLE_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
-     log_sql(db, "beetle_bailey", res2, url);
+     log_sql(db, "beetle_bailey", res2, final);
      free(url);
      return 0;
 }
