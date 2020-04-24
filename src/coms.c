@@ -134,7 +134,7 @@ int get_family_circus(WINDOW *win, int *placement)
      char *url = NULL;
      url = malloc(100);
      char final[200] = "https://www.arcamax.com/";
-     url = get_com_url(env_macro(FAMILY_CIRCUS_HTML), "/newspics/[^&]*.gif");
+     url = get_com_url(env_macro(FAMILY_CIRCUS_HTML), "/newspics/[^&\"]*.gif");
      win_print(win, placement, 2, "==> Downloading image");
      strcat(final, url);
      int res2 = get_url(final, env_macro(FAMILY_CIRCUS_IMG));
@@ -155,7 +155,7 @@ int get_beetle_bailey(WINDOW *win, int *placement)
      char *url = NULL;
      url = malloc(100);
      char final[200] = "https://www.arcamax.com/";
-     url = get_com_url(env_macro(BEETLE_HTML), "/newspics/[^&]*.jpg");
+     url = get_com_url(env_macro(BEETLE_HTML), "/newspics/[^&]*.gif");
      win_print(win, placement, 2, "==> Downloading image");
      strcat(final, url);
      int res2 = get_url(final, env_macro(BEETLE_IMG));
@@ -176,7 +176,7 @@ int get_blondie(WINDOW *win, int *placement)
      char *url = NULL;
      url = malloc(100);
      char final[200] = "https://www.arcamax.com/";
-     url = get_com_url(env_macro(BLONDIE_HTML), "/newspics/[^&]*.jpg");
+     url = get_com_url(env_macro(BLONDIE_HTML), "/newspics/[^&]*.gif");
      win_print(win, placement, 2, "==> Downloading image");
      strcat(final, url);
      int res2 = get_url(final, env_macro(BLONDIE_IMG));
