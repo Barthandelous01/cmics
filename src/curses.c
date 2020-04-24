@@ -25,7 +25,7 @@ static char *comics[] = {
      " Beetle Bailey "
 };
 
-void do_curses_main()
+void do_curses_main(sqlite3 *db)
 {
           /* ncurses init */
      initscr();
@@ -93,7 +93,7 @@ void do_curses_main()
      }	break;
 
      case 2: {
-          get_coms(load_output, & c, result2);
+          get_coms(load_output, & c, result2, db);
      } break;
 
      case 3:{
@@ -103,7 +103,7 @@ void do_curses_main()
 
      case 999:{
           rm_coms(load_output, &c, result2);
-          get_coms(load_output, &c, result2);
+          get_coms(load_output, &c, result2, db);
           show_coms(result2);
      } break;
      }

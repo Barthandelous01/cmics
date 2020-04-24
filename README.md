@@ -72,8 +72,8 @@
 * [gnu99-C](https://www.ansi.org/)
 * [ncurses](https://invisible-island.net/ncurses/)
 * [libcurl](https://curl.haxx.se/libcurl/)
+* SQLite
 * GNU Autotools
-
 
 
 <!-- GETTING STARTED -->

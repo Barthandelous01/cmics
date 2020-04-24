@@ -2,6 +2,7 @@
 #define COMS_C_
 
 #include <string.h>
+#include <sqlite3.h>
 #include <stdlib.h>
 
 #include "com_reg.h"
@@ -21,7 +22,7 @@ char *env_macro(char *macro)
      return result;
 }
 
-int get_xkcd(WINDOW * win, int *placement)
+int get_xkcd(WINDOW * win, int *placement, sqlite3 *db)
 {
      win_print(win, placement, 2, "===> XKCD");
      win_print(win, placement, 2, "==> Downloading Site");
@@ -40,7 +41,7 @@ int get_xkcd(WINDOW * win, int *placement)
      return 0;
 }
 
-int get_bc(WINDOW *win, int *placement)
+int get_bc(WINDOW *win, int *placement, sqlite3 *db)
 {
      win_print(win, placement, 2, "===> BC");
      win_print(win, placement, 2, "==> Downloading Site");
@@ -61,7 +62,7 @@ int get_bc(WINDOW *win, int *placement)
      return 0;
 }
 
-int get_garfield(WINDOW *win, int *placement)
+int get_garfield(WINDOW *win, int *placement, sqlite3 *db)
 {
      win_print(win, placement, 2, "===> Garfield");
      win_print(win, placement, 2, "==> Downloading Site");
@@ -80,7 +81,7 @@ int get_garfield(WINDOW *win, int *placement)
      return 0;
 }
 
-int get_far_side (WINDOW *win, int *placement)
+int get_far_side (WINDOW *win, int *placement, sqlite3 *db)
 {
      win_print(win, placement, 2, "===> The Far Side");
      win_print(win, placement, 2, "==> Downloading Site");
@@ -99,7 +100,7 @@ int get_far_side (WINDOW *win, int *placement)
      return 0;
 }
 
-int get_dilbert (WINDOW *win, int *placement)
+int get_dilbert (WINDOW *win, int *placement, sqlite3 *db)
 {
      win_print(win, placement, 2, "===> Dilbert");
      win_print(win, placement, 2, "==> Downloading Site");
@@ -123,7 +124,7 @@ int get_dilbert (WINDOW *win, int *placement)
      return 0;
 }
 
-int get_family_circus(WINDOW *win, int *placement)
+int get_family_circus(WINDOW *win, int *placement, sqlite3 *db)
 {
      win_print(win, placement, 2, "===> Family Circus");
      win_print(win, placement, 2, "==> Downloading Site");
@@ -144,7 +145,7 @@ int get_family_circus(WINDOW *win, int *placement)
      return 0;
 }
 
-int get_beetle_bailey(WINDOW *win, int *placement)
+int get_beetle_bailey(WINDOW *win, int *placement, sqlite3 *db)
 {
      win_print(win, placement, 2, "===> Beetle Bailey");
      win_print(win, placement, 2, "==> Downloading Site");
@@ -165,7 +166,7 @@ int get_beetle_bailey(WINDOW *win, int *placement)
      return 0;
 }
 
-int get_blondie(WINDOW *win, int *placement)
+int get_blondie(WINDOW *win, int *placement, sqlite3 *db)
 {
      win_print(win, placement, 2, "===> Blondie");
      win_print(win, placement, 2, "==> Downloading Site");

@@ -2,6 +2,7 @@
 #define LOGIC_C_
 
 #include <ncurses.h>
+#include <sqlite3.h>
 
 #include "constants.h"
 #include "imgs.h"
@@ -51,36 +52,36 @@ void rm_coms(WINDOW *win, int *c, int ccase)
 
 }
 
-void get_coms(WINDOW *load_output, int *c, int ccase)
+void get_coms(WINDOW *load_output, int *c, int ccase, sqlite3 *db)
 {
           switch (ccase) {
           case 1: {
-               get_xkcd(load_output, c);
+               get_xkcd(load_output, c, db);
           } break;
           case 2: {
-               get_bc(load_output, c);
+               get_bc(load_output, c, db);
           } break;
           case 3: {
-               get_garfield(load_output, c);
+               get_garfield(load_output, c, db);
           } break;
           case 4: {
-               get_far_side(load_output, c);
+               get_far_side(load_output, c, db);
           } break;
           case 5: {
-               get_dilbert(load_output, c);
+               get_dilbert(load_output, c, db);
           } break;
           case 6: {
-               get_family_circus(load_output, c);
+               get_family_circus(load_output, c, db);
           } break;
           case 7: {
-               get_blondie(load_output, c);
+               get_blondie(load_output, c, db);
           } break;
           case 8: {
-               get_beetle_bailey(load_output, c);
+               get_beetle_bailey(load_output, c, db);
           } break;
           case 999: {
                for (int x = 1; x <= 8; x++)
-                    get_coms(load_output, c, x);
+                    get_coms(load_output, c, x, db);
           } break;
           }
 }

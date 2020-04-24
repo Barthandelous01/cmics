@@ -13,6 +13,7 @@
 #define IMGS                 DIR"/imgs"
 #define HTML                 DIR"/html"
 
+#define DB                   DIR"/cmics.db"
 
 #define XKCD_HTML            HTML"/xkcd.html"
 #define XKCD_IMG             IMGS"/xkcd.png"

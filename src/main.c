@@ -4,11 +4,13 @@
 #include "constants.h"
 #include "logic.h"
 #include "cli.h"
+#include "coms.h"
 
-#include <netdb.h> 
-#include <sys/types.h> 
-#include <sys/socket.h> 
-#include <netinet/in.h> 
+#include <netdb.h>
+#include <sqlite3.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
 #include <arpa/inet.h>
 #include <config.h>
 #include <stdlib.h>
@@ -55,6 +57,29 @@ int main(int argc, char **argv)
          exit(-1);
      }
 
+
+     /* initialize database */
+     sqlite3 *db;
+     char *zZerrMsg = 0;
+     int rc;
+
+     rc = sqlite3_open(env_macro(DB), &db);
+     if (rc) {
+          fprintf(stderr, "%s: %s", "Couldn't open database", sqlite3_errmsg(db));
+          return 1;
+     } else {
+          char *sql = "CREATE TABLE IF NOT EXISTS requests ("\
+               "ID         INTEGER PRIMARY KEY AUTOINCREMENT,"\
+               "COMIC      TEXT        NOT NULL,"\
+               "SUCCESS    INTEGER     NOT NULL);";
+          rc = sqlite3_exec(db, sql, NULL, 0, &zZerrMsg);
+          if (rc != SQLITE_OK) {
+               fprintf (stderr, "%s:%s\n", "SQL error: ", zZerrMsg);
+               sqlite3_free(zZerrMsg);
+               return 1;
+          }
+     }
+
      /* parse options */
      static int quiet = 0;
      static struct option longopts[] = {
@@ -79,7 +104,7 @@ int main(int argc, char **argv)
                quiet = 1;
                optind--;
                for ( ;optind < argc && *argv[optind] != '-'; optind++) {
-                    get_coms(NULL, 0, com(argv[optind]));
+                    get_coms(NULL, 0, com(argv[optind]), db);
                }
                break;
           case 's':
@@ -102,7 +127,7 @@ int main(int argc, char **argv)
           }
      }
      if (quiet == 0) {
-          do_curses_main();
+          do_curses_main(db);
      }
 
      /* if we made it this far, everything's working great! */

@@ -1,7 +1,9 @@
 #ifndef LOGIC_H_
 #define LOGIC_H_
 
-void get_coms(WINDOW *load_output, int *c, int ccase);
+#include <sqlite3.h>
+
+void get_coms(WINDOW *load_output, int *c, int ccase, sqlite3 *db);
 void rm_coms(WINDOW *win, int *c, int ccase);
 void show_coms(int ccase);
 
