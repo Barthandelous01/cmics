@@ -10,6 +10,31 @@
 #include "url.h"
 #include "utils.h"
 
+static int log_sql(sqlite3 *db, char *name, int success)
+{
+     int rc;
+     char *errMsg = 0;
+     char *command = malloc(500);
+     if (command == NULL) {
+          fprintf (stderr, "%s", "Error allocating memory for SQL command.\n");
+          exit(-1);
+     }
+     /* build command */
+     sprintf(command, "INSERT INTO requests (COMIC, SUCCESS) "\
+                      "VALUES ('%s', %d);", name, success);
+
+     fprintf(stderr, "to run");     rc = sqlite3_exec(db, command, NULL, 0, &errMsg);
+
+     if (rc != SQLITE_OK) {
+          fprintf (stderr, "SQL Error: %s\n", errMsg);
+          sqlite3_free(errMsg);
+          exit(1);
+     }
+     fprintf(stderr, "to free");
+     free(command);
+     return 0;
+}
+
 char *env_macro(char *macro)
 {
      char *result = (char *)malloc(200 + strlen(macro));
@@ -37,6 +62,7 @@ int get_xkcd(WINDOW * win, int *placement, sqlite3 *db)
      int res2 = get_url(url, env_macro(XKCD_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
+     log_sql(db, "xkcd", res2);
      free(url);
      return 0;
 }
@@ -58,6 +84,7 @@ int get_bc(WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(final, env_macro(BC_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
+     log_sql(db, "bc", res2);
      free(url);
      return 0;
 }
@@ -77,6 +104,7 @@ int get_garfield(WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(url, env_macro(GARFIELD_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
+     log_sql(db, "garfield", res2);
      free(url);
      return 0;
 }
@@ -96,6 +124,7 @@ int get_far_side (WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(url, env_macro(FAR_SIDE_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
+     log_sql(db, "far_side", res2);
      free(url);
      return 0;
 }
@@ -119,6 +148,7 @@ int get_dilbert (WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(url, env_macro(DILBERT_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
+     log_sql(db, "far_side", res2);
      free(final);
      free(url);
      return 0;
@@ -141,6 +171,7 @@ int get_family_circus(WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(final, env_macro(FAMILY_CIRCUS_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
+     log_sql(db, "family_circus", res2);
      free(url);
      return 0;
 }
@@ -162,6 +193,7 @@ int get_beetle_bailey(WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(final, env_macro(BEETLE_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
+     log_sql(db, "beetle_bailey", res2);
      free(url);
      return 0;
 }
@@ -183,6 +215,7 @@ int get_blondie(WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(final, env_macro(BLONDIE_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
+     log_sql(db, "blondie", res2);
      free(url);
      return 0;
 }
