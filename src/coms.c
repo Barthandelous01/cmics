@@ -91,7 +91,7 @@ int get_bc(WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(final, env_macro(BC_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
-     log_sql(db, "bc", res2, url);
+     log_sql(db, "bc", res2, final);
      free(url);
      return 0;
 }
@@ -178,7 +178,7 @@ int get_family_circus(WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(final, env_macro(FAMILY_CIRCUS_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
-     log_sql(db, "family_circus", res2, url);
+     log_sql(db, "family_circus", res2, final);
      free(url);
      return 0;
 }
@@ -222,7 +222,7 @@ int get_blondie(WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(final, env_macro(BLONDIE_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
-     log_sql(db, "blondie", res2, url);
+     log_sql(db, "blondie", res2, final);
      free(url);
      return 0;
 }

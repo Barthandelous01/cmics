@@ -44,6 +44,16 @@ There is NO WARRANTY, to the extent permitted by law.");
      exit(0);
 }
 
+static int callback (void *data, int argc, char **argv, char **azColName)
+{
+     int i;
+     for(i = 0; i<argc; i++){
+          printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+     }
+     printf("\n");
+     return 0;
+}
+
 int main(int argc, char **argv)
 {
      /* do a very cursory check for internet connection */
@@ -90,10 +100,11 @@ int main(int argc, char **argv)
           {"download",  required_argument,   NULL,    'd'},
           {"display",   required_argument,   NULL,    's'},
           {"remove",    required_argument,   NULL,    'r'},
-          {"help",      no_argument,         NULL,    'h'}
+          {"help",      no_argument,         NULL,    'h'},
+          {"archive",   no_argument,         NULL,    'a'}
      };
      int ch = 0;
-     while ((ch = getopt_long(argc, argv, "Vd:s:r:h", longopts, NULL)) != -1) {
+     while ((ch = getopt_long(argc, argv, "Vhad:s:r:", longopts, NULL)) != -1) {
           switch(ch) {
           case 'V':
                quiet = 1;
@@ -124,6 +135,16 @@ int main(int argc, char **argv)
                     rm_coms(NULL, 0, com(argv[optind]));
                }
                break;
+          case 'a':
+               quiet = 1;
+               char *sql_dump = "SELECT * FROM requests";
+               rc = sqlite3_exec(db, sql_dump, callback, NULL, &zZerrMsg);
+               if (rc != SQLITE_OK) {
+                    fprintf(stderr, "SQL Error: %s\n", zZerrMsg);
+                    sqlite3_free(zZerrMsg);
+                    exit(1);
+               }
+               break;
           default:
                quiet = 1;
                break;
@@ -134,5 +155,6 @@ int main(int argc, char **argv)
      }
 
      /* if we made it this far, everything's working great! */
+     sqlite3_close(db);
      return 0;
 }
