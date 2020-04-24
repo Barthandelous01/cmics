@@ -2,6 +2,7 @@
 #define COMS_C_
 
 #include <string.h>
+#include <time.h>
 #include <sqlite3.h>
 #include <stdlib.h>
 
@@ -10,7 +11,7 @@
 #include "url.h"
 #include "utils.h"
 
-static int log_sql(sqlite3 *db, char *name, int success)
+static int log_sql(sqlite3 *db, char *name, int success, char *url)
 {
      int rc;
      char *errMsg = 0;
@@ -19,18 +20,24 @@ static int log_sql(sqlite3 *db, char *name, int success)
           fprintf (stderr, "%s", "Error allocating memory for SQL command.\n");
           exit(-1);
      }
-     /* build command */
-     sprintf(command, "INSERT INTO requests (COMIC, SUCCESS) "\
-                      "VALUES ('%s', %d);", name, success);
 
-     fprintf(stderr, "to run");     rc = sqlite3_exec(db, command, NULL, 0, &errMsg);
+     /* time */
+     time_t curtime;
+     struct tm *loc_time;
+     curtime = time (NULL);
+     loc_time = localtime(&curtime);
+
+     /* build command */
+     sprintf(command, "INSERT INTO requests (COMIC, SUCCESS, URL, TIME) "\
+             "VALUES ('%s', %d, '%s', '%s');", name, success, url, asctime(loc_time));
+
+     rc = sqlite3_exec(db, command, NULL, 0, &errMsg);
 
      if (rc != SQLITE_OK) {
           fprintf (stderr, "SQL Error: %s\n", errMsg);
           sqlite3_free(errMsg);
           exit(1);
      }
-     fprintf(stderr, "to free");
      free(command);
      return 0;
 }
@@ -62,7 +69,7 @@ int get_xkcd(WINDOW * win, int *placement, sqlite3 *db)
      int res2 = get_url(url, env_macro(XKCD_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
-     log_sql(db, "xkcd", res2);
+     log_sql(db, "xkcd", res2, url);
      free(url);
      return 0;
 }
@@ -84,7 +91,7 @@ int get_bc(WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(final, env_macro(BC_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
-     log_sql(db, "bc", res2);
+     log_sql(db, "bc", res2, url);
      free(url);
      return 0;
 }
@@ -104,7 +111,7 @@ int get_garfield(WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(url, env_macro(GARFIELD_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
-     log_sql(db, "garfield", res2);
+     log_sql(db, "garfield", res2, url);
      free(url);
      return 0;
 }
@@ -124,7 +131,7 @@ int get_far_side (WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(url, env_macro(FAR_SIDE_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
-     log_sql(db, "far_side", res2);
+     log_sql(db, "far_side", res2, url);
      free(url);
      return 0;
 }
@@ -148,7 +155,7 @@ int get_dilbert (WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(url, env_macro(DILBERT_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
-     log_sql(db, "far_side", res2);
+     log_sql(db, "dilbert", res2, final);
      free(final);
      free(url);
      return 0;
@@ -171,7 +178,7 @@ int get_family_circus(WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(final, env_macro(FAMILY_CIRCUS_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
-     log_sql(db, "family_circus", res2);
+     log_sql(db, "family_circus", res2, url);
      free(url);
      return 0;
 }
@@ -193,7 +200,7 @@ int get_beetle_bailey(WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(final, env_macro(BEETLE_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
-     log_sql(db, "beetle_bailey", res2);
+     log_sql(db, "beetle_bailey", res2, url);
      free(url);
      return 0;
 }
@@ -215,7 +222,7 @@ int get_blondie(WINDOW *win, int *placement, sqlite3 *db)
      int res2 = get_url(final, env_macro(BLONDIE_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
-     log_sql(db, "blondie", res2);
+     log_sql(db, "blondie", res2, url);
      free(url);
      return 0;
 }

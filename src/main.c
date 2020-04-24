@@ -71,7 +71,10 @@ int main(int argc, char **argv)
           char *sql = "CREATE TABLE IF NOT EXISTS requests ("\
                "ID         INTEGER PRIMARY KEY AUTOINCREMENT,"\
                "COMIC      TEXT        NOT NULL,"\
-               "SUCCESS    INTEGER     NOT NULL);";
+               "SUCCESS    INTEGER     NOT NULL,"\
+               "URL        TEXT        NOT NULL,"\
+               "TIME       TEXT        NOT NULL"\
+               ");";
           rc = sqlite3_exec(db, sql, NULL, 0, &zZerrMsg);
           if (rc != SQLITE_OK) {
                fprintf (stderr, "%s:%s\n", "SQL error: ", zZerrMsg);
