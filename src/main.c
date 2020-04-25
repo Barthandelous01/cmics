@@ -56,6 +56,10 @@ static int callback (void *data, int argc, char **argv, char **azColName)
                printf("Image URL: %s\n", argv[i]);
           else if (strcmp(azColName[i], "TIME")==0)
                printf("Time retreived: %s\n", argv[i]);
+          else if (strcmp(azColName[i], "SUCCESS") == 0)
+               if (atoi(argv[i]) != 0){
+                    printf("Download not successful.\n");
+               }
      }
      printf("\n");
      return 0;
