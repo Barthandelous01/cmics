@@ -9,6 +9,7 @@
 #include <netdb.h>
 #include <sqlite3.h>
 #include <sys/types.h>
+#include <string.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
@@ -22,7 +23,7 @@ void usage()
 The C based comics downloader\n\
 \n\
 USAGE:\n\
-    cmics [Vh] [dsr]\n\
+    cmics [Vha] [dsr]\n\
 \n\
 OPTIONS:\n\
 -V, --version                   Print version info and exit\n\
@@ -30,6 +31,7 @@ OPTIONS:\n\
 -r, --remove                    Remove comic files by name\n\
 -s, --display                   Display comics by name\n\
 -d, --download                  Download comics by name\n\
+-a, --archive                   Display comic history\n\
 \n\
 Omission of any arguments starts an ncurses-based UI.");
      exit(0);
@@ -48,7 +50,12 @@ static int callback (void *data, int argc, char **argv, char **azColName)
 {
      int i;
      for(i = 0; i<argc; i++){
-          printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+          if (strcmp(azColName[i], "COMIC")==0)
+               printf("Comic: %s\n", argv[i]);
+          else if (strcmp(azColName[i], "URL")==0)
+               printf("Image URL: %s\n", argv[i]);
+          else if (strcmp(azColName[i], "TIME")==0)
+               printf("Time retreived: %s\n", argv[i]);
      }
      printf("\n");
      return 0;

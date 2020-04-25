@@ -95,7 +95,7 @@ sudo apt-get install libcurl4-gnutls-dev
 ```
 
 ### Installation
-`cmics` is maintained using the GNU Autotools. To install, clone and make the build system yourself, or download a tarball, unzip it, and follow the ritual:
+`cmics` is maintained using the GNU Autotools. To install, clone and make the build system yourself (`autoreconf --install`), or download a tarball, unzip it, and follow the ritual:
 ```sh
 ./configure
 make
@@ -106,9 +106,7 @@ sudo make install
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Cmics is used for aggregating some of the geekier comics that many members of the programming community enjoy. To automate downloading all of the comics, run `echo -n 'aa' | cmics`. the `-n` is not required, but reccomended if you want to study the results.
-
-
+Cmics is used for aggregating some of the geekier comics that many members of the programming community enjoy. To automate downloading all of the comics, you can set up a cron job of `cmics --download ...`. `cmics` logs all comics image URLs in an `sqlite` database, accessable with `cmics -a` or `--archive`. It logs the time accessed, comic, and the absolute image url, so that if you remember, "There was this great XKCD I read last thursday... what was it?" You could so something like `cmics -a | grep 'Comic: xkcd' -B 2` and get all of the XKCD images that `cmics` has downloaded. The database is found in `$HOME/.comics/cmics.db`.
 
 <!-- ROADMAP -->
 ## Roadmap
