@@ -35,6 +35,8 @@ int com(char *name)
           return 7;
      else if (strcmp(name, "beetle_bailey") == 0)
           return 8;
+     else if (strcmp(name, "*") == 0)
+          return 999;
      else
           return help();
 }
