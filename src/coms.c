@@ -106,7 +106,7 @@ int get_garfield(WINDOW *win, int *placement, sqlite3 *db)
      win_print(win, placement, 2, "==> Finding URL of image");
      char *url = NULL;
      url = malloc(100);
-     url = get_com_url(env_macro(GARFIELD_HTML), "https://[^\"]*.gif");
+     url = get_com_url(env_macro(GARFIELD_HTML), "https://[^\"]*.(gif|jpg|png)");
      win_print(win, placement, 2, "==> Downloading image");
      int res2 = get_url(url, env_macro(GARFIELD_IMG));
      error_print(win, placement, res2, "Image downloaded",
@@ -126,7 +126,7 @@ int get_far_side (WINDOW *win, int *placement, sqlite3 *db)
      win_print(win, placement, 2, "==> Finding URL of image");
      char *url = NULL;
      url = malloc(100);
-     url = get_com_url(env_macro(FAR_SIDE_HTML), "https://assets.thefarside.com/uploads/splash[^\"]*.jpg");
+     url = get_com_url(env_macro(FAR_SIDE_HTML), "https://assets.thefarside.com/uploads/splash[^\"]*.(png|gif|jpg)");
      win_print(win, placement, 2, "==> Downloading image");
      int res2 = get_url(url, env_macro(FAR_SIDE_IMG));
      error_print(win, placement, res2, "Image downloaded",
@@ -152,7 +152,7 @@ int get_dilbert (WINDOW *win, int *placement, sqlite3 *db)
      strcpy(final, "https://");
      strcat(final, url);
      win_print(win, placement, 2, "==> Downloading image");
-     int res2 = get_url(url, env_macro(DILBERT_IMG));
+     int res2 = get_url(final, env_macro(DILBERT_IMG));
      error_print(win, placement, res2, "Image downloaded",
                  "Image not found");
      log_sql(db, "dilbert", res2, final);
@@ -172,7 +172,7 @@ int get_family_circus(WINDOW *win, int *placement, sqlite3 *db)
      char *url = NULL;
      url = malloc(100);
      char final[200] = "https://www.arcamax.com/";
-     url = get_com_url(env_macro(FAMILY_CIRCUS_HTML), "/newspics/[^&\"]*.gif");
+     url = get_com_url(env_macro(FAMILY_CIRCUS_HTML), "/newspics/[^&\"]*.(jpg|gif|png)");
      win_print(win, placement, 2, "==> Downloading image");
      strcat(final, url);
      int res2 = get_url(final, env_macro(FAMILY_CIRCUS_IMG));
@@ -194,7 +194,7 @@ int get_beetle_bailey(WINDOW *win, int *placement, sqlite3 *db)
      char *url = NULL;
      url = malloc(100);
      char final[200] = "https://www.arcamax.com/";
-     url = get_com_url(env_macro(BEETLE_HTML), "/newspics/[^&]*.gif");
+     url = get_com_url(env_macro(BEETLE_HTML), "/newspics/[^&]*.(gif|jpg|png)");
      win_print(win, placement, 2, "==> Downloading image");
      strcat(final, url);
      int res2 = get_url(final, env_macro(BEETLE_IMG));
@@ -216,7 +216,7 @@ int get_blondie(WINDOW *win, int *placement, sqlite3 *db)
      char *url = NULL;
      url = malloc(100);
      char final[200] = "https://www.arcamax.com/";
-     url = get_com_url(env_macro(BLONDIE_HTML), "/newspics/[^&]*.jpg");
+     url = get_com_url(env_macro(BLONDIE_HTML), "/newspics/[^&]*.(gif|jpg)");
      win_print(win, placement, 2, "==> Downloading image");
      strcat(final, url);
      int res2 = get_url(final, env_macro(BLONDIE_IMG));
