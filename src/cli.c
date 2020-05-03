@@ -13,7 +13,8 @@ I didn't recognize that. Available options are:\n\
     dilbert\n\
     family_circus\n\
     blondie\n\
-    beetle_bailey\n");
+    beetle_bailey\n\
+    . (for every comic)\n");
      return 11;
 }
 
@@ -35,7 +36,7 @@ int com(char *name)
           return 7;
      else if (strcmp(name, "beetle_bailey") == 0)
           return 8;
-     else if (strcmp(name, "*") == 0)
+     else if (strcmp(name, ".") == 0)
           return 999;
      else
           return help();
