@@ -16,6 +16,7 @@ void rm (WINDOW *win, int *placement, char *file)
      strcpy(filename, file);
      strcpy(rest, file);
      error_print(win, placement, res, strcat(filename, " was deleted!"), strcat(rest, " was not deleted."));
+     free(file);
 }
 
 #endif /* RM_C_ */

@@ -22,6 +22,7 @@ void check_dir(WINDOW *win, int *placement, char *dir)
      } else {
           win_print(win, placement, 2, "Directory found!");
      }
+     free(dir);
 }
 
 void check_dirs(WINDOW *win, int *placement)
