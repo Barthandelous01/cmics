@@ -86,7 +86,7 @@ int get_bc(WINDOW *win, int *placement, sqlite3 *db)
      url = malloc(100);
      char final[100] = "https://johnhartstudios.com";
      url = get_com_url(env_macro(BC_HTML), "/bcstrips/[^\"]*");
-     snprintf(final, sizeof(final), "%s%s", final, url);
+     strcat(final, url);
      win_print(win, placement, 2, "==> Downloading image");
      int res2 = get_url(final, env_macro(BC_IMG));
      error_print(win, placement, res2, "Image downloaded",
