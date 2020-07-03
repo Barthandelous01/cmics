@@ -32,7 +32,7 @@
   </a>
 
   <p align="center">
-    The C based comics downloader
+    The C-based comics downloader
     <br />
     <a href="https://github.com/Barthandelous01/cmics"><strong>Explore the docs »</strong></a>
     <br />

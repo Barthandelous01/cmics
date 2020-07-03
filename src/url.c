@@ -27,6 +27,7 @@ int get_url(char *url, char *file)
           return 1;
 
      curl_easy_cleanup(handle);
+     free(file);
      fclose(fp);
      return 0;
 }

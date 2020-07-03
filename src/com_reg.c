@@ -53,6 +53,8 @@ char *get_com_url(char *file /* to search */ ,
      url = regexp(buffer, pattern, &b, &e);
      /* extract answer */
      fclose(fp);
+     free(buffer);
+     free(file);
      return url;
 }
 
