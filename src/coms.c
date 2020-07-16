@@ -216,7 +216,7 @@ int get_blondie(WINDOW *win, int *placement, sqlite3 *db)
      char *url = NULL;
      url = malloc(100);
      char final[200] = "https://www.arcamax.com/";
-     url = get_com_url(env_macro(BLONDIE_HTML), "/newspics/[^n&]*.gif");
+     url = get_com_url(env_macro(BLONDIE_HTML), "/newspics/[^n&]*.jpg");
      win_print(win, placement, 2, "==> Downloading image");
      strcat(final, url);
      int res2 = get_url(final, env_macro(BLONDIE_IMG));
@@ -227,4 +227,4 @@ int get_blondie(WINDOW *win, int *placement, sqlite3 *db)
      return 0;
 }
 
-#endif				/* COMS_C_ */
+#endif    /* COMS_C_ */
