@@ -67,16 +67,6 @@ static int callback (void *data, int argc, char **argv, char **azColName)
 
 int main(int argc, char **argv)
 {
-     /* do a very cursory check for internet connection */
-     char *hostname;
-     struct hostent *hostinfo;
-     hostname = "archlinux.org";
-     hostinfo = gethostbyname(hostname);
-
-     if (hostinfo == NULL) {
-         fprintf(stderr, "%s", "No internet connection found.");
-         exit(-1);
-     }
 
 
      /* initialize database */
@@ -126,6 +116,18 @@ int main(int argc, char **argv)
                usage();
                break;
           case 'd':
+               /* do a very cursory check for internet connection */
+          {
+               char *hostname;
+               struct hostent *hostinfo;
+               hostname = "archlinux.org";
+               hostinfo = gethostbyname(hostname);
+
+               if (hostinfo == NULL) {
+                    fprintf(stderr, "%s", "No internet connection found.");
+                    exit(-1);
+               }
+          }
                quiet = 1;
                optind--;
                for ( ;optind < argc && *argv[optind] != '-'; optind++) {
