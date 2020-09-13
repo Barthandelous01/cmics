@@ -4,13 +4,90 @@
 #include <string.h>
 #include <time.h>
 #include <sqlite3.h>
+#include <stdio.h>		// not sure if this is truly necessary, but...
 #include <stdlib.h>
+#include <curl/curl.h>
+#include <regex.h>
 
-#include "com_reg.h"
 #include "constants.h"
-#include "url.h"
 #include "utils.h"
 
+static int get_url(char *url, char *file)
+{
+     FILE *fp = NULL;
+     CURL *handle = curl_easy_init();
+     if (handle) {
+          fp = fopen(file, "w");
+          if (fp) {
+               curl_easy_setopt(handle, CURLOPT_URL, url);
+               curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, NULL);
+               curl_easy_setopt(handle, CURLOPT_WRITEDATA, fp);
+          } else {
+               return 1;
+          }
+     } else {
+          return 1;
+     }
+     CURLcode result = curl_easy_perform(handle);
+     if (result)
+          return 1;
+
+     curl_easy_cleanup(handle);
+     free(file);
+     fclose(fp);
+     return 0;
+}
+
+static char *regexp(char *string, char *patrn, int *begin, int *end)
+{
+    int i, w = 0, len;
+    char *word = NULL;
+    regex_t rgT;
+    regmatch_t match;
+    regcomp(&rgT, patrn, REG_EXTENDED);
+    if ((regexec(&rgT, string, 1, &match, 0)) == 0) {
+         *begin = (int) match.rm_so;
+         *end = (int) match.rm_eo;
+         len = *end - *begin;
+         word = malloc(len + 1);
+         for (i = *begin; i < *end; i++) {
+              word[w] = string[i];
+              w++;
+         }
+         word[w] = 0;
+    }
+    regfree(&rgT);
+    return word;
+}
+
+static char *get_com_url(char *file /* to search */ ,
+                  char *pattern /* to search file for */ )
+{
+     /* open file */
+     char *buffer = 0;
+     FILE *fp;
+     fp = fopen(file, "r+");
+     /* get size of file for buffer */
+     if (fp) {
+          fseek(fp, 0, SEEK_END);
+          int length = ftell(fp);
+          fseek(fp, 0, SEEK_SET);
+          buffer = malloc(length);
+          if (buffer) {
+               fread(buffer, 1, length, fp);
+          }
+     }
+     /* init variables for regex */
+     int b, e;
+     /* perform regex */
+     char *url;
+     url = regexp(buffer, pattern, &b, &e);
+     /* extract answer */
+     fclose(fp);
+     free(buffer);
+     free(file);
+     return url;
+}
 static int log_sql(sqlite3 *db, char *name, int success, char *url)
 {
      int rc;

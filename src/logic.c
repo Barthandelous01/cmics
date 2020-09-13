@@ -2,12 +2,25 @@
 #define LOGIC_C_
 
 #include <ncurses.h>
+#include <stdio.h>
+#include <string.h>
 #include <sqlite3.h>
 
 #include "constants.h"
 #include "imgs.h"
+#include "utils.h"
 #include "coms.h"
-#include "rm.h"
+
+static void rm (WINDOW *win, int *placement, char *file)
+{
+     int res = remove(file);
+     char filename[200] = "";
+     char rest[200] = "";
+     strcpy(filename, file);
+     strcpy(rest, file);
+     error_print(win, placement, res, strcat(filename, " was deleted!"), strcat(rest, " was not deleted."));
+     free(file);
+}
 
 void rm_coms(WINDOW *win, int *c, int ccase)
 {
