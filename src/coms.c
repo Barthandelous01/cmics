@@ -100,13 +100,13 @@ int get_garfield(WINDOW *win, int *placement, sqlite3 *db)
 {
      win_print(win, placement, 2, "===> Garfield");
      win_print(win, placement, 2, "==> Downloading Site");
-     int res = get_url("https://garfield.com", env_macro(GARFIELD_HTML));
+     int res = get_url("https://www.gocomics.com/garfield/", env_macro(GARFIELD_HTML));
      error_print(win, placement, res, "Site downloaded!",
                  "Site not found");
      win_print(win, placement, 2, "==> Finding URL of image");
      char *url = NULL;
      url = malloc(100);
-     url = get_com_url(env_macro(GARFIELD_HTML), "https://[^\"]*.(gif|jpg|png)");
+     url = get_com_url(env_macro(GARFIELD_HTML), "https://assets.amuniversal.com/[1234567890abcde]*");
      win_print(win, placement, 2, "==> Downloading image");
      int res2 = get_url(url, env_macro(GARFIELD_IMG));
      error_print(win, placement, res2, "Image downloaded",
