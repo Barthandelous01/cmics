@@ -108,6 +108,12 @@ static int com(char *name)
           return help();
 }
 
+static void env_macro(char *macro, char *dest)
+{
+     strcpy(dest, getenv("HOME"));
+     strcat(dest, macro);
+}
+
 /* main */
 int main(int argc, char **argv)
 {
@@ -128,7 +134,9 @@ int main(int argc, char **argv)
      char *zZerrMsg = 0;
      int rc;
 
-     rc = sqlite3_open(env_macro(DB), &db);
+     char temp[100];
+     env_macro(DB, temp);
+     rc = sqlite3_open(temp, &db);
      if (rc) {
           fprintf(stderr, "%s: %s", "Couldn't open database", sqlite3_errmsg(db));
           return 1;

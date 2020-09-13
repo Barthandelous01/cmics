@@ -11,6 +11,12 @@
 #include "utils.h"
 #include "coms.h"
 
+static void env_macro(char *macro, char *dest)
+{
+     strcpy(dest, getenv("HOME"));
+     strcat(dest, macro);
+}
+
 static void rm (WINDOW *win, int *placement, char *file)
 {
      int res = remove(file);
@@ -19,43 +25,60 @@ static void rm (WINDOW *win, int *placement, char *file)
      strcpy(filename, file);
      strcpy(rest, file);
      error_print(win, placement, res, strcat(filename, " was deleted!"), strcat(rest, " was not deleted."));
-     free(file);
 }
 
+/* how I wish there was a better way... */
 void rm_coms(WINDOW *win, int *c, int ccase)
 {
+     char temp[200];
      switch (ccase) {
           case 1: {
-               rm(win, c, env_macro(XKCD_IMG));
-               rm(win, c, env_macro(XKCD_HTML));
+               env_macro(XKCD_HTML, temp);
+               rm(win, c, temp);
+               env_macro(XKCD_IMG, temp);
+               rm(win, c, temp);
           } break;
           case 2: {
-               rm(win, c, env_macro(BC_IMG));
-               rm(win, c, env_macro(BC_HTML));
+               env_macro(BC_HTML, temp);
+               rm(win, c, temp);
+               env_macro(BC_IMG, temp);
+               rm(win, c, temp);
           } break;
           case 3: {
-               rm(win, c, env_macro(GARFIELD_IMG));
-               rm(win, c, env_macro(GARFIELD_HTML));
+               env_macro(GARFIELD_HTML, temp);
+               rm(win, c, temp);
+               env_macro(GARFIELD_IMG, temp);
+               rm(win, c, temp);
           } break;
           case 4: {
-               rm(win, c, env_macro(FAR_SIDE_IMG));
-               rm(win, c, env_macro(FAR_SIDE_HTML));
+               env_macro(FAR_SIDE_HTML, temp);
+               rm(win, c, temp);
+               env_macro(FAR_SIDE_IMG, temp);
+               rm(win, c, temp);
           } break;
           case 5: {
-               rm(win, c, env_macro(DILBERT_IMG));
-               rm(win, c, env_macro(DILBERT_HTML));
+               env_macro(DILBERT_HTML, temp);
+               rm(win, c, temp);
+               env_macro(DILBERT_IMG, temp);
+               rm(win, c, temp);
           } break;
           case 6: {
-               rm(win, c, env_macro(FAMILY_CIRCUS_IMG));
-               rm(win, c, env_macro(FAMILY_CIRCUS_HTML));
+               env_macro(FAMILY_CIRCUS_HTML, temp);
+               rm(win, c, temp);
+               env_macro(FAMILY_CIRCUS_IMG, temp);
+               rm(win, c, temp);
           } break;
           case 7: {
-               rm(win, c, env_macro(BLONDIE_IMG));
-               rm(win, c, env_macro(BLONDIE_HTML));
+               env_macro(BLONDIE_HTML, temp);
+               rm(win, c, temp);
+               env_macro(BLONDIE_IMG, temp);
+               rm(win, c, temp);
           } break;
           case 8: {
-               rm(win, c, env_macro(BEETLE_IMG));
-               rm(win, c, env_macro(BEETLE_HTML));
+               env_macro(BEETLE_HTML, temp);
+               rm(win, c, temp);
+               env_macro(BEETLE_IMG, temp);
+               rm(win, c, temp);
           } break;
           case 999: {
                for (int x = 1; x <= 8; x++)
@@ -101,35 +124,44 @@ void get_coms(WINDOW *load_output, int *c, int ccase, sqlite3 *db)
 
 void show_coms(int ccase)
 {
+     char temp[200];
      switch (ccase) {
-     case 1: {
-          show_img(env_macro(XKCD_IMG));
-     } break;
-     case 2: {
-          show_img(env_macro(BC_IMG));
-     } break;
-     case 3: {
-          show_img(env_macro(GARFIELD_IMG));
-     } break;
-     case 4: {
-          show_img(env_macro(FAR_SIDE_IMG));
-     } break;
-     case 5: {
-          show_img(env_macro(DILBERT_IMG));
-     } break;
-     case 6: {
-          show_img(env_macro(FAMILY_CIRCUS_IMG));
-     } break;
-     case 7: {
-          show_img(env_macro(BLONDIE_IMG));
-     } break;
-     case 8: {
-          show_img(env_macro(BEETLE_IMG));
-     } break;
-     case 999: {
-          for (int x = 0; x <= 8; x++)
-               show_coms(x);
-     } break;
+          case 1: {
+               env_macro(XKCD_IMG, temp);
+               show_img(temp);
+          } break;
+          case 2: {
+               env_macro(BC_IMG, temp);
+               show_img(temp);
+          } break;
+          case 3: {
+               env_macro(GARFIELD_IMG, temp);
+               show_img(temp);
+          } break;
+          case 4: {
+               env_macro(FAR_SIDE_IMG, temp);
+               show_img(temp);
+          } break;
+          case 5: {
+               env_macro(DILBERT_IMG, temp);
+               show_img(temp);
+          } break;
+          case 6: {
+               env_macro(FAMILY_CIRCUS_IMG, temp);
+               show_img(temp);
+          } break;
+          case 7: {
+               env_macro(BLONDIE_IMG, temp);
+               show_img(temp);
+          } break;
+          case 8: {
+               env_macro(BEETLE_IMG, temp);
+               show_img(temp);
+          } break;
+          case 999: {
+               for (int x = 0; x <= 8; x++)
+                    show_coms(x);
+          } break;
      }
 }
 

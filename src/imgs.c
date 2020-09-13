@@ -12,7 +12,6 @@ void show_img(char *img)
      strcat(cmd, " ");
      strcat(cmd, img);
      system(cmd);
-     free(img);
 }
 
 #endif /* IMGS_C_ */

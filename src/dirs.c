@@ -13,6 +13,12 @@
 #include "coms.h"
 #include "utils.h"
 
+static void env_macro(char *macro, char *dest)
+{
+     strcpy(dest, getenv("HOME"));
+     strcat(dest, macro);
+}
+
 void check_dir(WINDOW *win, int *placement, char *dir)
 {
      struct stat st = {0};
@@ -22,14 +28,17 @@ void check_dir(WINDOW *win, int *placement, char *dir)
      } else {
           win_print(win, placement, 2, "Directory found!");
      }
-     free(dir);
 }
 
 void check_dirs(WINDOW *win, int *placement)
 {
-     check_dir(win, placement, env_macro(DIR));
-     check_dir(win, placement, env_macro(IMGS));
-     check_dir(win, placement, env_macro(HTML));
+     char temp[200];
+     env_macro(DIR, temp);
+     check_dir(win, placement, temp);
+     env_macro(IMGS, temp);
+     check_dir(win, placement, temp);
+     env_macro(HTML, temp);
+     check_dir(win, placement, temp);
 }
 
 
