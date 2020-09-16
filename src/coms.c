@@ -309,7 +309,7 @@ int get_blondie(WINDOW *win, int *placement, sqlite3 *db)
      char *url = NULL;
      url = malloc(100);
      char final[200] = "https://www.arcamax.com/";
-     url = get_com_url(temp, "/newspics/[^n&]*.jpg");
+     url = get_com_url(temp, "/newspics/[^n&]*.(jpg|gif)");
      win_print(win, placement, 2, "==> Downloading image");
      strcat(final, url);
      env_macro(BLONDIE_IMG, temp);
