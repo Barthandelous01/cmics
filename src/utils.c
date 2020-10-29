@@ -4,8 +4,6 @@
 #include <ncurses.h>
 #include <stdlib.h>
 
-#include "url.h"
-#include "com_reg.h"
 #include "constants.h"
 
 void win_print(WINDOW * win, int *placement, int x, char *message)
