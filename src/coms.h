@@ -13,4 +13,6 @@ int get_family_circus(WINDOW *win, int *placement, sqlite3 *db);
 int get_beetle_bailey(WINDOW *win, int *placement, sqlite3 *db);
 int get_blondie(WINDOW *win, int *placement, sqlite3 *db);
 
+extern char *proxy;
+
 #endif				/* COMS_H_ */

@@ -8,6 +8,10 @@
 
 #define n_comics 8
 
+#define COMIC_URL_LEN ((1 << 7))
+#define HOME_DIR_LEN ((1 << 8))
+#define SQL_LOG_LEN ((1 << 9))
+
 #define DIR                  "/.comics"
 
 #define IMGS                 DIR"/imgs"

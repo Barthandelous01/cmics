@@ -8,10 +8,10 @@
 
 void show_img(char *img)
 {
-     char cmd[200] = "/usr/local/bin/img ";
-     strcat(cmd, " ");
-     strcat(cmd, img);
-     system(cmd);
+	char cmd[200] = "/usr/local/bin/img ";
+	strcat(cmd, " ");
+	strcat(cmd, img);
+	system(cmd);
 }
 
 #endif /* IMGS_C_ */
