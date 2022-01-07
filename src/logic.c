@@ -1,9 +1,10 @@
 #ifndef LOGIC_C_
 #define LOGIC_C_
 
-#include <ncurses.h>
 #include <stdio.h>
 #include <string.h>
+
+#include <ncurses.h>
 #include <sqlite3.h>
 
 #include "constants.h"
@@ -27,141 +28,55 @@ static void rm (WINDOW *win, int *placement, char *file)
 	error_print(win, placement, res, strcat(filename, " was deleted!"), strcat(rest, " was not deleted."));
 }
 
-/* how I wish there was a better way... */
+/* This evil deserves explaining. According to the C standard, char * are
+ * equivalent to void *, and vice versa. According to the POSIX standard,
+ * a function pointer can be converted to a void* and back again. Therefore,
+ * a function pointer can be converted to a char* (which is guarenteed to have
+ * the same representation) and back again. */
+char *file_locs[n_comics + 1][3] = {
+	{NULL, NULL},
+	{XKCD_HTML, XKCD_IMG, (char*)&get_xkcd},
+	{BC_HTML, BC_IMG, (char*)&get_bc},
+	{GARFIELD_HTML, GARFIELD_IMG, (char*)&get_garfield},
+	{FAR_SIDE_HTML, FAR_SIDE_IMG, (char*)&get_far_side},
+	{DILBERT_HTML, DILBERT_IMG, (char*)&get_dilbert},
+	{FAMILY_CIRCUS_HTML, FAMILY_CIRCUS_IMG, (char*)&get_family_circus},
+	{BLONDIE_HTML, BLONDIE_IMG, (char*)&get_blondie},
+	{BEETLE_HTML, BEETLE_IMG, (char*)&get_beetle_bailey}
+};
+
 void rm_coms(WINDOW *win, int *c, int ccase)
 {
-	char temp[200];
-	switch (ccase) {
-	case 1: {
-		env_macro(XKCD_HTML, temp);
+	char temp[HOME_DIR_LEN];
+	if (ccase != 999) {
+		env_macro(file_locs[ccase][0], temp);
 		rm(win, c, temp);
-		env_macro(XKCD_IMG, temp);
+		env_macro(file_locs[ccase][1], temp);
 		rm(win, c, temp);
-	} break;
-	case 2: {
-		env_macro(BC_HTML, temp);
-		rm(win, c, temp);
-		env_macro(BC_IMG, temp);
-		rm(win, c, temp);
-	} break;
-	case 3: {
-		env_macro(GARFIELD_HTML, temp);
-		rm(win, c, temp);
-		env_macro(GARFIELD_IMG, temp);
-		rm(win, c, temp);
-	} break;
-	case 4: {
-		env_macro(FAR_SIDE_HTML, temp);
-		rm(win, c, temp);
-		env_macro(FAR_SIDE_IMG, temp);
-		rm(win, c, temp);
-	} break;
-	case 5: {
-		env_macro(DILBERT_HTML, temp);
-		rm(win, c, temp);
-		env_macro(DILBERT_IMG, temp);
-		rm(win, c, temp);
-	} break;
-	case 6: {
-		env_macro(FAMILY_CIRCUS_HTML, temp);
-		rm(win, c, temp);
-		env_macro(FAMILY_CIRCUS_IMG, temp);
-		rm(win, c, temp);
-	} break;
-	case 7: {
-		env_macro(BLONDIE_HTML, temp);
-		rm(win, c, temp);
-		env_macro(BLONDIE_IMG, temp);
-		rm(win, c, temp);
-	} break;
-	case 8: {
-		env_macro(BEETLE_HTML, temp);
-		rm(win, c, temp);
-		env_macro(BEETLE_IMG, temp);
-		rm(win, c, temp);
-	} break;
-	case 999: {
-		for (int x = 1; x <= 8; x++)
+	} else {
+		for (int x = 1; x <= n_comics; x++)
 			rm_coms(win, c, x);
-	} break;
 	}
-
 }
 
 void get_coms(WINDOW *load_output, int *c, int ccase, sqlite3 *db)
 {
-	switch (ccase) {
-	case 1: {
-		get_xkcd(load_output, c, db);
-	} break;
-	case 2: {
-		get_bc(load_output, c, db);
-	} break;
-	case 3: {
-		get_garfield(load_output, c, db);
-	} break;
-	case 4: {
-		get_far_side(load_output, c, db);
-	} break;
-	case 5: {
-		get_dilbert(load_output, c, db);
-	} break;
-	case 6: {
-		get_family_circus(load_output, c, db);
-	} break;
-	case 7: {
-		get_blondie(load_output, c, db);
-	} break;
-	case 8: {
-		get_beetle_bailey(load_output, c, db);
-	} break;
-	case 999: {
-		for (int x = 1; x <= 8; x++)
+	if (ccase != 999)
+		((void(*)(WINDOW*, int*, sqlite3*))file_locs[ccase][2])(load_output, c, db);
+	else
+		for (int x = 1; x <= n_comics; x++)
 			get_coms(load_output, c, x, db);
-	} break;
-	}
 }
 
 void show_coms(int ccase)
 {
-	char temp[200];
-	switch (ccase) {
-	case 1: {
-		env_macro(XKCD_IMG, temp);
+	char temp[HOME_DIR_LEN];
+	if (ccase != 999) {
+		env_macro(file_locs[ccase][1], temp);
 		show_img(temp);
-	} break;
-	case 2: {
-		env_macro(BC_IMG, temp);
-		show_img(temp);
-	} break;
-	case 3: {
-		env_macro(GARFIELD_IMG, temp);
-		show_img(temp);
-	} break;
-	case 4: {
-		env_macro(FAR_SIDE_IMG, temp);
-		show_img(temp);
-	} break;
-	case 5: {
-		env_macro(DILBERT_IMG, temp);
-		show_img(temp);
-	} break;
-	case 6: {
-		env_macro(FAMILY_CIRCUS_IMG, temp);
-		show_img(temp);
-	} break;
-	case 7: {
-		env_macro(BLONDIE_IMG, temp);
-		show_img(temp);
-	} break;
-	case 8: {
-		env_macro(BEETLE_IMG, temp);
-		show_img(temp);
-	} break;
-	case 999: {
+	} else {
 		for (int x = 0; x <= 8; x++)
 			show_coms(x);
-	} break;
 	}
 }
 
