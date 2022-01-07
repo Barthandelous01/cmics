@@ -1,10 +1,12 @@
 #include <string.h>
 #include <time.h>
-#include <sqlite3.h>
-#include <stdio.h>		// not sure if this is truly necessary, but...
+#include <stdio.h>
 #include <stdlib.h>
-#include <curl/curl.h>
 #include <regex.h>
+#include <sys/stat.h>
+
+#include <sqlite3.h>
+#include <curl/curl.h>
 
 #include "constants.h"
 #include "utils.h"
@@ -94,12 +96,11 @@ static void get_com_url(char *file, char *pattern, char *result, int len)
 	fp = fopen(file, "r+");
 	/* get size of file for buffer */
 	if (fp) {
-		fseek(fp, 0, SEEK_END);
-		int length = ftell(fp);
-		fseek(fp, 0, SEEK_SET);
-		buffer = malloc(length);
+		struct stat st;
+		fstat(fileno(fp), &st);
+		buffer = malloc(st.st_size);
 		if (buffer) {
-			fread(buffer, 1, length, fp);
+			fread(buffer, 1, st.st_size, fp);
 		}
 	}
 	/* init variables for regex */
