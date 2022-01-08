@@ -1,10 +1,3 @@
-#include "curses.h"
-#include "menu.h"
-#include "dirs.h"
-#include "constants.h"
-#include "logic.h"
-#include "coms.h"
-
 #include <netdb.h>
 #include <sqlite3.h>
 #include <sys/types.h>
@@ -12,9 +5,20 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <config.h>
+#ifdef HAVE_CONFIG_H
+#  include <config.h>
+#else
+#  define PACKAGE_STRING	/* silence errors */
+#endif
 #include <stdlib.h>
 #include <getopt.h>
+
+#include "curses.h"
+#include "dirs.h"
+#include "constants.h"
+#include "logic.h"
+#include "coms.h"
+
 
 
 /* boilerplate functions */
