@@ -32,7 +32,7 @@ void check_dir(WINDOW *win, int *placement, char *dir)
 
 void check_dirs(WINDOW *win, int *placement)
 {
-	char temp[200];
+	char temp[HOME_DIR_LEN];
 	env_macro(DIR, temp);
 	check_dir(win, placement, temp);
 	env_macro(IMGS, temp);

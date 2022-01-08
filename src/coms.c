@@ -261,7 +261,7 @@ int get_dilbert (WINDOW *win, int *placement, sqlite3 *db)
 	win_print(win, placement, 2, "==> Finding URL of image");
 	char *url = NULL;
 	url = malloc(COMIC_URL_LEN);
-	get_com_url(temp, "assets.amuniversal.com/([a-f]|[[:digit:]]){32}",
+	get_com_url(temp, "assets.amuniversal.com/([a-f]|[[:digit:]]){,32}",
 		url, COMIC_URL_LEN);
 	char *final = NULL;
 	final = malloc(COMIC_URL_LEN + (1 << 5));

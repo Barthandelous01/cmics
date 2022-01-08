@@ -8,7 +8,7 @@
 
 void show_img(char *img)
 {
-	char cmd[200] = "/usr/local/bin/img ";
+	char cmd[COMIC_URL_LEN] = "/usr/local/bin/img ";
 	strcat(cmd, " ");
 	strcat(cmd, img);
 	system(cmd);
