@@ -21,8 +21,8 @@ static void env_macro(char *macro, char *dest)
 static void rm (WINDOW *win, int *placement, char *file)
 {
 	int res = remove(file);
-	char filename[200] = "";
-	char rest[200] = "";
+	char filename[HOME_DIR_LEN];
+	char rest[HOME_DIR_LEN];
 	strcpy(filename, file);
 	strcpy(rest, file);
 	error_print(win, placement, res, strcat(filename, " was deleted!"), strcat(rest, " was not deleted."));
@@ -75,7 +75,7 @@ void show_coms(int ccase)
 		env_macro(file_locs[ccase][1], temp);
 		show_img(temp);
 	} else {
-		for (int x = 0; x <= 8; x++)
+		for (int x = 1; x <= n_comics; x++)
 			show_coms(x);
 	}
 }
